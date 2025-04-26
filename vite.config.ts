@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite'
 
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+
 export default defineConfig({
-  base: '/portfolio/',
+  base: isGitHubPages ? '/portfolio/' : '/',
   root: "src",
   build: {
     outDir: '../dist',
