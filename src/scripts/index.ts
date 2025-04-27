@@ -1,7 +1,9 @@
-import '../styles/main.css';
+import "../styles/main.css";
 
-import { initAbout } from './about';
+import { initAbout } from "./about";
+import { initContact } from "./contact";
 
-window.addEventListener('DOMContentLoaded', async () => {
-    initAbout();
-})
+window.addEventListener("DOMContentLoaded", async () => {
+  initAbout();
+  initContact();
+});
