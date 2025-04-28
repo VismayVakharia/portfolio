@@ -1,26 +1,24 @@
-import { defineConfig } from 'vite';
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from "vite";
+import tailwindcss from "@tailwindcss/vite";
 
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
 
 export default defineConfig({
-  base: isGitHubPages ? '/portfolio/' : '/',
+  base: isGitHubPages ? "/portfolio/" : "/",
   root: "src",
   build: {
-    outDir: '../dist',
-    assetsDir: 'assets',
+    outDir: "../dist",
+    assetsDir: "assets",
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: 'src/index.html',
+        main: "src/index.html",
       },
     },
   },
   server: {
     port: 5173,
-    open: true
+    open: true,
   },
-  plugins: [
-    tailwindcss(),
-  ]
+  plugins: [tailwindcss()],
 });
