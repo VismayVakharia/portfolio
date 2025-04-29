@@ -1,0 +1,38 @@
+[
+  {
+    "category": "Technical Skills",
+    "icon": "fas fa-code",
+    "skills": [
+      { "name": "Robotics", "level": 90 },
+      { "name": "Machine Learning - DL, RL", "level": 75 },
+      { "name": "Control & Estimation", "level": 60 },
+      { "name": "SLAM", "level": 70 },
+      { "name": "Motion Planning", "level": 80 },
+      { "name": "Computer Vision", "level": 50 }
+    ]
+  },
+  {
+    "category": "Languages & Libraries",
+    "icon": "fas fa-layer-group",
+    "skills": [
+      { "name": "Python", "level": 80 },
+      { "name": "C++", "level": 60 },
+      { "name": "PyTorch, TensorFlow", "level": 80 },
+      { "name": "NumPy, SciPy, Matplotlib", "level": 75 },
+      { "name": "Pandas, Scikit Learn, CasADi", "level": 50 },
+      { "name": "HTML, CSS, JavaScript", "level": 75 }
+    ]
+  },
+  {
+    "category": "Tools & Others",
+    "icon": "fas fa-tools",
+    "skills": [
+      { "name": "Robot Operating System", "level": 90 },
+      { "name": "Simulators - Isaac Sim, Gazebo, PyBullet", "level": 90 },
+      { "name": "CAD - SolidWorks, OnShape", "level": 80 },
+      { "name": "MATLAB, Simulink", "level": 60 },
+      { "name": "Latex", "level": 70 },
+      { "name": "Git, CI/CD, Docker", "level": 80 }
+    ]
+  }
+]

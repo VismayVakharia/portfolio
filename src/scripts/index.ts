@@ -6,11 +6,13 @@ import { particlesConfig } from "./particles-config";
 
 import { initHeader } from "./header";
 import { initAbout } from "./about";
+import { initSkills } from "./skills";
 import { initContact } from "./contact";
 
 window.addEventListener("DOMContentLoaded", async () => {
   initHeader();
   initAbout();
+  initSkills();
   initContact();
 
   await initParticles(tsParticles);
