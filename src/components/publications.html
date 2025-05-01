@@ -1,0 +1,48 @@
+<div class="container mx-auto px-6">
+  <h2 class="section-title text-3xl font-bold text-center mb-16">Publications</h2>
+  <div id="publications-container" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+
+  <div class="mt-12 text-center">
+    <a
+      href="https://scholar.google.com/citations?user=Owl4GugAAAAJ"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block bg-indigo-400 dark:bg-indigo-600 hover:bg-indigo-300 dark:hover:bg-indigo-700 text-black dark:text-white px-8 py-3 rounded-lg transition-colors duration-300 shadow-lg">
+      View on Google Scholar
+      <i class="fas fa-external-link-alt ml-2"></i>
+    </a>
+  </div>
+  <div
+    id="copy-citation-popup"
+    class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-sm px-4 py-2 rounded-lg opacity-0 transition-all duration-300 pointer-events-none shadow-lg">
+    Citation copied to clipboard!
+  </div>
+  <div
+    id="citation-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="citation-modal-title"
+    class="flex fixed inset-0 p-6 md:p-12 bg-gray-500/50 justify-center items-center z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="max-w-150 bg-white dark:bg-gray-800 p-6 rounded shadow-lg">
+      <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Citation</h2>
+      <pre
+        id="citation-text"
+        class="min-h-30 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded whitespace-pre-wrap break-words text-sm"></pre>
+      <div class="flex justify-between mt-4">
+        <button
+          id="button-copy-citation"
+          aria-label="Copy citation to clipboard"
+          class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
+          <i class="fas fa-copy pr-2"></i>
+          Copy
+        </button>
+        <button
+          id="button-close-modal"
+          aria-label="Close citation modal"
+          class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

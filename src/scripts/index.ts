@@ -8,6 +8,7 @@ import { initHeader } from "./header";
 import { initAbout } from "./about";
 import { initSkills } from "./skills";
 import { initEducation } from "./education-experience";
+import { initPublications } from "./publications";
 import { initContact } from "./contact";
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -15,6 +16,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   initAbout();
   initSkills();
   initEducation();
+  initPublications();
   initContact();
 
   await initParticles(tsParticles);
