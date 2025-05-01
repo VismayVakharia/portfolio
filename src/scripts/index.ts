@@ -7,12 +7,14 @@ import { particlesConfig } from "./particles-config";
 import { initHeader } from "./header";
 import { initAbout } from "./about";
 import { initSkills } from "./skills";
+import { initEducation } from "./education-experience";
 import { initContact } from "./contact";
 
 window.addEventListener("DOMContentLoaded", async () => {
   initHeader();
   initAbout();
   initSkills();
+  initEducation();
   initContact();
 
   await initParticles(tsParticles);
