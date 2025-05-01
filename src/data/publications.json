@@ -1,0 +1,98 @@
+[
+  {
+    "title": "Teleoperated Omni-directional Dual Arm Mobile Manipulation Robotic System with Shared Control for Retail Store",
+    "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
+    "year": 2024,
+    "authors": [
+      "Rolif Lima",
+      "Somdeb Saha",
+      "Nijil George",
+      "Vismay Vakharia",
+      "Shubham Parab",
+      "Sahil Gaonkar",
+      "Vighnesh Vatsal",
+      "Kaushik Das"
+    ],
+    "icon": "fas fa-file-alt",
+    "doi": "10.1109/SMC54092.2024.10831687",
+    "file": "2024_SMC_Shared_Autonomy.pdf"
+  },
+  {
+    "title": "System for Autonomous Management of Retail Shelves using an Omnidirectional Dual-arm Robot with a Novel Soft Gripper",
+    "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
+    "year": 2024,
+    "authors": [
+      "Nijil George",
+      "Somdeb Saha",
+      "Shubham Parab",
+      "Vismay Vakharia",
+      "Rolif Lima",
+      "Vighnesh Vatsal",
+      "Kaushik Das"
+    ],
+    "icon": "fas fa-file-alt",
+    "doi": "10.1109/SMC54092.2024.10831405",
+    "file": "2024_SMC_Anomaly_Detection.pdf"
+  },
+  {
+    "title": "ATMAS: Assistive Teleoperation Method using Augmented Reality and Switching Control",
+    "conference": "IEEE Conference on Telepresence",
+    "year": 2024,
+    "authors": [
+      "Somdeb Saha",
+      "Sahil Gaonkar",
+      "Shubham Parab",
+      "Rolif Lima",
+      "Vighnesh Vatsal",
+      "Vismay Vakharia",
+      "Kaushik Das"
+    ],
+    "icon": "fas fa-file-alt",
+    "doi": "10.1109/Telepresence63209.2024.10841568",
+    "file": "2024_Telepresence_ATMAS.pdf"
+  },
+  {
+    "title": "Augmenting Robot Teleoperation with Shared Autonomy via Model Predictive Control",
+    "conference": "IEEE Conference on Telepresence",
+    "year": 2024,
+    "authors": ["Rolif Lima", "Somdeb Saha", "Vismay Vakharia", "Vighnesh Vatsal", "Kaushik Das"],
+    "icon": "fas fa-file-alt",
+    "doi": "10.1109/Telepresence63209.2024.10841639",
+    "file": "2024_Telepresence_MPC.pdf"
+  },
+  {
+    "title": "Model-Mediated Delay Compensation with Goal Prediction for Robot Teleoperation Over Internet",
+    "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
+    "year": 2023,
+    "authors": ["Rolif Lima", "Vismay Vakharia", "Utsav Rai", "Hardik Mehta", "Vighnesh Vatsal", "Kaushik Das"],
+    "icon": "fas fa-file-alt",
+    "doi": "10.1109/SMC53992.2023.10394188",
+    "file": "2023_SMC.pdf"
+  },
+  {
+    "title": "An Efficient Method for Accurate Pose Estimation and Error Correction of Cuboidal Objects",
+    "conference": "IEEE/RSJ IROS Workshop on Mobile Manipulation and Embodied Intelligence (MOMA)",
+    "year": 2022,
+    "authors": [
+      "Utsav Rai",
+      "Hardik Mehta",
+      "Vismay Vakharia",
+      "Aditya Choudhary",
+      "Amit Parmar",
+      "Rolif Lima",
+      "Kaushik Das"
+    ],
+    "icon": "fas fa-file-alt",
+    "doi": "",
+    "file": "2022_IROS_MOMA.pdf"
+  },
+  {
+    "title": "Transparency Enhancement in Teleoperation: An Improved Model-Free Predictor for Varying Network Delay in Telerobotic Application",
+    "conference": "European Control Conference (ECC)",
+    "year": 2021,
+    "authors": ["Nithya Sridhar", "Rolif Lima", "Utsav Rai", "Vismay Vakharia", "Kaushik Das", "Balamuralidhar P"],
+    "icon": "fas fa-file-alt",
+    "doi": "10.23919/ECC54610.2021.9654847",
+    "file": "2021_ECC.pdf"
+  }
+]
