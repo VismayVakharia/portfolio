@@ -10,6 +10,7 @@ import { initSkills } from "./skills";
 import { initEducation } from "./education-experience";
 import { initPublications } from "./publications";
 import { initContact } from "./contact";
+import { initFooter } from "./footer";
 
 window.addEventListener("DOMContentLoaded", async () => {
   initHeader();
@@ -18,6 +19,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   initEducation();
   initPublications();
   initContact();
+  initFooter();
 
   await initParticles(tsParticles);
 });
