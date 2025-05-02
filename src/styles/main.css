@@ -10,7 +10,9 @@ body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 .section-title {
@@ -30,7 +32,9 @@ body {
 }
 
 .social-link {
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
 .social-link:hover {

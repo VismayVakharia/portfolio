@@ -14,19 +14,38 @@
   },
   "author": "Vismay Vakharia",
   "scripts": {
+    "prepare": "husky",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts --no-warn-ignored",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "lint-staged": {
+    "*.{ts,html,css}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "devDependencies": {
+    "eslint": "^9.25.1",
+    "eslint-plugin-html": "^8.1.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5.2.2",
+    "typescript-eslint": "^8.31.1",
     "vite": "^6.3.2"
   },
   "dependencies": {
-    "tsparticles": "^3.8.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@tailwindcss/vite": "^4.1.4",
+    "@types/node": "^22.14.1",
     "tailwindcss": "^4.1.4",
-    "@types/node": "^22.14.1"
+    "tsparticles": "^3.8.1"
   }
 }

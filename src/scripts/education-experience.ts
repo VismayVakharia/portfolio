@@ -13,7 +13,6 @@ export function initEducation(): void {
       } else {
         entry.target.classList.remove("animate-fadeInUp");
       }
-      console.log("dsgsdg");
     });
   });
 

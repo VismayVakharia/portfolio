@@ -2,8 +2,8 @@ import "../styles/main.css";
 
 import { loadFull } from "tsparticles";
 import { type Engine, tsParticles } from "@tsparticles/engine";
-import { particlesConfig } from "./particles-config";
 
+import { particlesConfig } from "./particles-config";
 import { initHeader } from "./header";
 import { initAbout } from "./about";
 import { initSkills } from "./skills";

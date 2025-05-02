@@ -62,7 +62,7 @@ export function initAbout(): void {
             class="bg-indigo-400 dark:bg-indigo-600 hover:bg-indigo-300 dark:hover:bg-indigo-700 text-black dark:text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center">
             <i class="fas fa-envelope mr-2"></i> Contact Me
           </a>
-          <a href="${resumeURL}" target="_blank"
+          <a href="${resumeURL}" target="_blank" rel="noopener noreferrer"
             class="border border-indigo-400 dark:border-indigo-600 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-400 dark:hover:bg-indigo-600 hover:text-black dark:hover:text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center">
             <i class="fas fa-download mr-2"></i> Download CV
           </a>
