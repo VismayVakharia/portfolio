@@ -8,6 +8,7 @@ import { initHeader } from "./header";
 import { initAbout } from "./about";
 import { initSkills } from "./skills";
 import { initEducation } from "./education-experience";
+import { initProjects } from "./projects";
 import { initPublications } from "./publications";
 import { initContact } from "./contact";
 import { initFooter } from "./footer";
@@ -17,6 +18,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   initAbout();
   initSkills();
   initEducation();
+  initProjects();
   initPublications();
   initContact();
   initFooter();
