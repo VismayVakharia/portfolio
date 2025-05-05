@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Robo Scientist",
+    "subtitle": "Creating an avatar system that transports the human presence to a remote location in real time",
+    "details": [
+      "Successfully developed Deep Learning based ML algorithms for 6D pose estimation and Deep Reinforcement Learning for dual-arm mobile manipulation enhancing stability and efficiency.",
+      "Created a multi-headed control framework for teleoperation, shared autonomy, and full robot autonomy that handles delay compensation & packet loss.",
+      "Built simulation environment in Gazebo and PyBullet, integrating ROS controllers and sensors. Led the development of navigation system for the omni-directional robot with safety algorithms for collision avoidance"
+    ],
+    "tags": ["Shared Autonomy", "Computer Vision", "Deep Learning", "Control", "ROS2"],
+    "github": "",
+    "link": "",
+    "image": ""
+  },
+  {
+    "title": "MBZIRC 2020",
+    "subtitle": "Autonomously locate, pick, transport and assemble different types of brick shaped objects to build pre-defined structures in an outdoor environment",
+    "details": [
+      "Developed a full-fledged simulation environment in Gazebo with ROS framework for the Challenge 2.",
+      "Implemented the end-to-end navigation stack including sensor fusion, localization, mapping, navigation and obstacle avoidance on the ground vehicle using sensors like Lidar, IMU, GPS & cameras"
+    ],
+    "tags": ["Navigation", "SLAM", "Sensor Fusion", "ROS", "Gazebo"],
+    "github": "",
+    "link": "",
+    "image": ""
+  },
+  {
+    "title": "PalPicker",
+    "subtitle": "A collaborative autonomous pallet--picker for smart warehousing",
+    "details": [
+      "Created a resource management algorithm for task allocation across robot fleets.",
+      "Implemented Kalman Filter for odometry using various sensors"
+    ],
+    "tags": ["Sensor Fusion", "ROS"],
+    "github": "",
+    "link": "",
+    "image": ""
+  },
+  {
+    "title": "Lateral Control of Autonomous Vehicle",
+    "subtitle": "Developed a vehicle dynamics model for lateral control",
+    "details": [
+      "Developed a mathematical model of vehicle dynamics consisting of two sub-models i.e. Linear Tire Model and Planer Bicycle Model.",
+      "Used System Identification Techniques to refine the mathematical model using the data acquired by performing custom experiments.",
+      "Implemented Euler's Method to discretize the model and estimated cornering stiffness of tires using Least Squares method and compared accuracy against simulation developed in MATLAB"
+    ],
+    "tags": ["MATLAB", "Systen Identification"],
+    "github": "",
+    "link": "",
+    "image": ""
+  },
+  {
+    "title": "Cable Actuated Rehabilitation Glove",
+    "subtitle": "Build a cable actuated exoskeleton glove to assist finger movements for stroke/paralysis patients",
+    "details": [
+      "Developed a prototype glove by implementing 4-bar mechanism using 3D printed and machined parts and installed actuators, sensors and microcontroller.",
+      "Tested the working of actuated glove on dummy hand.",
+      "Developed a simulator on Simulink (MATLAB) using CAD model of fingers & palm and connected it to the glove via Arduino to visualize the actual sensor data"
+    ],
+    "tags": ["CAD", "Simulink", "MATLAB"],
+    "github": "",
+    "link": "",
+    "image": ""
+  }
+]
