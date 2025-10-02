@@ -8,6 +8,7 @@ type Publication = {
   conference: string;
   year: number;
   doi: string;
+  link: string;
   file: string;
   icon: string;
 };
@@ -18,6 +19,7 @@ type Citation = {
   conference: string;
   year: number;
   doi: string;
+  link: string;
 };
 
 export function initPublications(): void {
@@ -70,6 +72,12 @@ function createPublicationCard(paper: Publication): HTMLDivElement {
   if (paper.doi) doiLink?.setAttribute("href", `https://doi.org/${paper.doi}`);
   else {
     doiLink?.remove();
+  }
+
+  const link = wrapper.querySelector("a.link");
+  if (paper.link) link?.setAttribute("href", paper.link);
+  else {
+    link?.remove();
   }
 
   const paperURL = new URL(`../../public/assets/publications/${paper.file}`, import.meta.url).href;
