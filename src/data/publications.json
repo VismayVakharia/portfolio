@@ -1,5 +1,22 @@
 [
   {
+    "title": "Task Planning for Mobile Manipulation in Retail Stores using Foundation Models with Iterative Re-planning",
+    "conference": "IEEE ICRA Workshop on Language and Semantics of Task and Motion Planning (TAMP)",
+    "year": 2024,
+    "authors": [
+      "Vismay Vakharia",
+      "Sanjana Garai",
+      "Rolif Lima",
+      "Nijil George",
+      "Vighnesh Vatsal",
+      "Kaushik Das"
+    ],
+    "icon": "fas fa-file-alt",
+    "doi": "",
+    "link": "https://dyalab.mines.edu/2025/icra-workshop/#submissions",
+    "file": "2025_ICRA_TAMP.pdf"
+  },
+  {
     "title": "Teleoperated Omni-directional Dual Arm Mobile Manipulation Robotic System with Shared Control for Retail Store",
     "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
     "year": 2024,
@@ -15,6 +32,7 @@
     ],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/SMC54092.2024.10831687",
+    "link": "",
     "file": "2024_SMC_Shared_Autonomy.pdf"
   },
   {
@@ -32,6 +50,7 @@
     ],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/SMC54092.2024.10831405",
+    "link": "",
     "file": "2024_SMC_Anomaly_Detection.pdf"
   },
   {
@@ -49,24 +68,40 @@
     ],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/Telepresence63209.2024.10841568",
+    "link": "",
     "file": "2024_Telepresence_ATMAS.pdf"
   },
   {
     "title": "Augmenting Robot Teleoperation with Shared Autonomy via Model Predictive Control",
     "conference": "IEEE Conference on Telepresence",
     "year": 2024,
-    "authors": ["Rolif Lima", "Somdeb Saha", "Vismay Vakharia", "Vighnesh Vatsal", "Kaushik Das"],
+    "authors": [
+      "Rolif Lima",
+      "Somdeb Saha",
+      "Vismay Vakharia",
+      "Vighnesh Vatsal",
+      "Kaushik Das"
+    ],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/Telepresence63209.2024.10841639",
+    "link": "",
     "file": "2024_Telepresence_MPC.pdf"
   },
   {
     "title": "Model-Mediated Delay Compensation with Goal Prediction for Robot Teleoperation Over Internet",
     "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
     "year": 2023,
-    "authors": ["Rolif Lima", "Vismay Vakharia", "Utsav Rai", "Hardik Mehta", "Vighnesh Vatsal", "Kaushik Das"],
+    "authors": [
+      "Rolif Lima",
+      "Vismay Vakharia",
+      "Utsav Rai",
+      "Hardik Mehta",
+      "Vighnesh Vatsal",
+      "Kaushik Das"
+    ],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/SMC53992.2023.10394188",
+    "link": "",
     "file": "2023_SMC.pdf"
   },
   {
@@ -83,16 +118,25 @@
       "Kaushik Das"
     ],
     "icon": "fas fa-file-alt",
-    "doi": "",
+    "doi": "10.48550/arXiv.2505.04962",
+    "link": "https://mobile-manipulation.net/events/moma2022/#accepted",
     "file": "2022_IROS_MOMA.pdf"
   },
   {
     "title": "Transparency Enhancement in Teleoperation: An Improved Model-Free Predictor for Varying Network Delay in Telerobotic Application",
     "conference": "European Control Conference (ECC)",
     "year": 2021,
-    "authors": ["Nithya Sridhar", "Rolif Lima", "Utsav Rai", "Vismay Vakharia", "Kaushik Das", "Balamuralidhar P"],
+    "authors": [
+      "Nithya Sridhar",
+      "Rolif Lima",
+      "Utsav Rai",
+      "Vismay Vakharia",
+      "Kaushik Das",
+      "Balamuralidhar P"
+    ],
     "icon": "fas fa-file-alt",
     "doi": "10.23919/ECC54610.2021.9654847",
+    "link": "",
     "file": "2021_ECC.pdf"
   }
 ]
