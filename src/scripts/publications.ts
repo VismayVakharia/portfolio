@@ -108,6 +108,7 @@ function showCitationModal(data: DOMStringMap): void {
     conference: data.conference,
     year: parseInt(data.year),
     doi: data.doi ?? "",
+    link: data.link ?? "",
   };
 
   citationTextElement.textContent = formatChicagoCitation(citation);
