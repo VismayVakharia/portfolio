@@ -3,36 +3,94 @@
     "category": "Technical Skills",
     "icon": "fas fa-code",
     "skills": [
-      { "name": "Robotics", "level": 90 },
-      { "name": "Machine Learning - DL, RL", "level": 75 },
-      { "name": "Control & Estimation", "level": 60 },
-      { "name": "SLAM", "level": 70 },
-      { "name": "Motion Planning", "level": 80 },
-      { "name": "Computer Vision", "level": 50 }
+      {
+        "name": "Robotics",
+        "level": 90
+      },
+      {
+        "name": "Dual-Arm Mobile Manipulation",
+        "level": 80
+      },
+      {
+        "name": "Foundation Models",
+        "level": 70
+      },
+      {
+        "name": "Learning from Demonstration",
+        "level": 75
+      },
+      {
+        "name": "Deep Reinforcement Learning",
+        "level": 80
+      },
+      {
+        "name": "Control & Estimation",
+        "level": 70
+      },
+      {
+        "name": "Task Planning, Motion Planning",
+        "level": 80
+      },
+      {
+        "name": "Computer Vision, Deep Learning",
+        "level": 65
+      },
+      {
+        "name": "Classical Machine Learning",
+        "level": 75
+      },
+      {
+        "name": "SLAM",
+        "level": 70
+      }
     ]
   },
   {
     "category": "Languages & Libraries",
     "icon": "fas fa-layer-group",
     "skills": [
-      { "name": "Python", "level": 80 },
-      { "name": "C++", "level": 60 },
-      { "name": "PyTorch, TensorFlow", "level": 80 },
-      { "name": "NumPy, SciPy, Matplotlib", "level": 75 },
-      { "name": "Pandas, Scikit Learn, CasADi", "level": 50 },
-      { "name": "HTML, CSS, JavaScript", "level": 75 }
+      {
+        "name": "Python, C++, Typescript, Javascript",
+        "level": 85
+      },
+      {
+        "name": "PyTorch, TensorFlow, Scikit Learn",
+        "level": 70
+      },
+      {
+        "name": "NumPy, SciPy, Matplotlib, Pandas",
+        "level": 75
+      },
+      {
+        "name": "Latex, HTML, CSS, React",
+        "level": 80
+      }
     ]
   },
   {
     "category": "Tools & Others",
     "icon": "fas fa-tools",
     "skills": [
-      { "name": "Robot Operating System", "level": 90 },
-      { "name": "Simulators - Isaac Sim, Gazebo, PyBullet", "level": 90 },
-      { "name": "CAD - SolidWorks, OnShape", "level": 80 },
-      { "name": "MATLAB, Simulink", "level": 60 },
-      { "name": "Latex", "level": 70 },
-      { "name": "Git, CI/CD, Docker", "level": 80 }
+      {
+        "name": "Robot Operating System (ROS1 & ROS2)",
+        "level": 90
+      },
+      {
+        "name": "Simulators - Isaac Sim, Genesis, MuJoCo, Gazebo",
+        "level": 90
+      },
+      {
+        "name": "CAD - SolidWorks, OnShape",
+        "level": 80
+      },
+      {
+        "name": "MATLAB, Simulink, Unity",
+        "level": 60
+      },
+      {
+        "name": "Git, CI/CD, Docker",
+        "level": 80
+      }
     ]
   }
 ]

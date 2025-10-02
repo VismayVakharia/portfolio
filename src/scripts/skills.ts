@@ -7,17 +7,49 @@ export function initSkills(): void {
   skills_section.innerHTML = `
     <div class="container mx-auto px-6">
       <h2 class="section-title text-3xl font-bold text-center mb-16">My Skills</h2>
-      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="skills-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 lg:grid-auto-rows gap-8"></div>
     </div>
   `;
 
   const skills_container = document.getElementById("skills-container");
   if (!(skills_container instanceof HTMLDivElement)) return;
 
-  skills.forEach((category) => {
+  const category_tech = skills[0];
+  const section_tech = document.createElement("div");
+  section_tech.className =
+    "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-3 row-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+
+  section_tech.innerHTML = `
+    <h3 class="text-xl font-semibold mb-4 flex items-center">
+      <i class="${category_tech.icon} text-indigo-500 mr-2"></i> ${category_tech.category}
+    </h3>
+    <div class="space-y-4">
+      ${category_tech.skills
+        .map(
+          (skill) => `
+      <div class="mb-5">
+        <div class="flex justify-between mb-1 font-semibold">
+          <span>${skill.name}</span>
+        </div>
+        <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
+          <div
+            class="skill-bar h-2.5 rounded-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 transition-all duration-1000 opacity-0"
+            style="width: 0%"
+            data-level="${skill.level}%">
+          </div>
+        </div>
+      </div>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+  skills_container.appendChild(section_tech);
+
+  skills.slice(1).forEach((category) => {
     const section = document.createElement("div");
     section.className =
-      "bg-gray-200 dark:bg-gray-800 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+      "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
 
     section.innerHTML = `
     <h3 class="text-xl font-semibold mb-4 flex items-center">
@@ -25,21 +57,20 @@ export function initSkills(): void {
     </h3>
     <div class="space-y-4">
       ${category.skills
-        .map(
-          (skill) => `
-      <div>
-        <div class="flex justify-between mb-1">
-          <span>${skill.name}</span>
-        </div>
-        <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
-          <div
-            class="skill-bar h-2.5 rounded-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 transition-all duration-1000 opacity-0"
-            style="width: 0%"
-            data-level="${skill.level}%"></div>
+        .map((skill, index, arr) => {
+          let margin = "mb-5";
+          if (index == arr.length - 1) margin = "";
+          const html = `
+      <div class="relative ${margin}">
+        <div class="w-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 rounded-full inline-block py-2">
+          <div class="flex justify-between px-5 text-sm">
+            <span>${skill.name}</span>
+          </div>
         </div>
       </div>
-      `
-        )
+      `;
+          return html;
+        })
         .join("")}
     </div>
   `;
