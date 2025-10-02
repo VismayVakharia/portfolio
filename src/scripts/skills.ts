@@ -14,17 +14,19 @@ export function initSkills(): void {
   const skills_container = document.getElementById("skills-container");
   if (!(skills_container instanceof HTMLDivElement)) return;
 
-  const category_tech = skills[0];
-  const section_tech = document.createElement("div");
-  section_tech.className =
-    "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-3 row-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+  skills.forEach((category) => {
+    const section = document.createElement("div");
 
-  section_tech.innerHTML = `
+    if (category["skill-bar"]) {
+      section.className =
+        "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-3 row-span-1 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+
+      section.innerHTML = `
     <h3 class="text-xl font-semibold mb-4 flex items-center">
-      <i class="${category_tech.icon} text-indigo-500 mr-2"></i> ${category_tech.category}
+      <i class="${category.icon} text-indigo-500 mr-2"></i> ${category.category}
     </h3>
     <div class="space-y-4">
-      ${category_tech.skills
+      ${category.skills
         .map(
           (skill) => `
       <div class="mb-5">
@@ -44,36 +46,35 @@ export function initSkills(): void {
         .join("")}
     </div>
   `;
-  skills_container.appendChild(section_tech);
+    } else {
+      section.className =
+        "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
 
-  skills.slice(1).forEach((category) => {
-    const section = document.createElement("div");
-    section.className =
-      "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
-
-    section.innerHTML = `
-    <h3 class="text-xl font-semibold mb-4 flex items-center">
-      <i class="${category.icon} text-indigo-500 mr-2"></i> ${category.category}
-    </h3>
-    <div class="space-y-4">
-      ${category.skills
-        .map((skill, index, arr) => {
-          let margin = "mb-5";
-          if (index == arr.length - 1) margin = "";
-          const html = `
-      <div class="relative ${margin}">
-        <div class="w-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 rounded-full inline-block py-2">
-          <div class="flex justify-between px-5 text-sm">
-            <span>${skill.name}</span>
-          </div>
+      section.innerHTML = `
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+          <i class="${category.icon} text-indigo-500 mr-2"></i> ${category.category}
+        </h3>
+        <div class="space-y-4">
+          ${category.skills
+            .map((skill, index, arr) => {
+              let margin = "mb-7";
+              if (index == arr.length - 1) margin = "";
+              const html = `
+                <div class="relative ${margin}">
+                  <div class="w-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 rounded-full inline-block py-2">
+                    <div class="flex justify-between px-5 text-sm">
+                      <span>${skill.name}</span>
+                    </div>
+                  </div>
+                </div>
+          `;
+              return html;
+            })
+            .join("")}
         </div>
-      </div>
-      `;
-          return html;
-        })
-        .join("")}
-    </div>
-  `;
+    `;
+    }
+
     skills_container.appendChild(section);
   });
 

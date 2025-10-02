@@ -1,68 +1,101 @@
 [
   {
-    "category": "Technical Skills",
+    "category": "Robotics & Core Systems",
     "icon": "fas fa-code",
+    "skill-bar": true,
     "skills": [
       {
-        "name": "Robotics",
-        "level": 90
-      },
-      {
         "name": "Dual-Arm Mobile Manipulation",
-        "level": 80
-      },
-      {
-        "name": "Foundation Models",
-        "level": 70
+        "level": 85
       },
       {
         "name": "Learning from Demonstration",
         "level": 75
       },
       {
-        "name": "Deep Reinforcement Learning",
-        "level": 80
+        "name": "Shared Autonomy | Human-in-the-Loop Control",
+        "level": 90
       },
       {
-        "name": "Control & Estimation",
-        "level": 70
-      },
-      {
-        "name": "Task Planning, Motion Planning",
-        "level": 80
-      },
-      {
-        "name": "Computer Vision, Deep Learning",
-        "level": 65
-      },
-      {
-        "name": "Classical Machine Learning",
+        "name": "Whole-Body Control",
         "level": 75
       },
       {
-        "name": "SLAM",
+        "name": "Task & Motion Planning",
+        "level": 80
+      },
+      {
+        "name": "Simultaneous Localization & Mapping (SLAM)",
         "level": 70
+      },
+      {
+        "name": "Control & Estimation",
+        "level": 75
       }
     ]
   },
   {
     "category": "Languages & Libraries",
     "icon": "fas fa-layer-group",
+    "skill-bar": false,
     "skills": [
       {
         "name": "Python, C++, Typescript, Javascript",
-        "level": 85
+        "level": 90
       },
       {
-        "name": "PyTorch, TensorFlow, Scikit Learn",
-        "level": 70
+        "name": "PyTorch, TensorFlow",
+        "level": 75
+      },
+      {
+        "name": "Scikit Learn, Hugging Face",
+        "level": 60
       },
       {
         "name": "NumPy, SciPy, Matplotlib, Pandas",
         "level": 75
       },
       {
-        "name": "Latex, HTML, CSS, React",
+        "name": "OpenCV, NetworkX, spaCy",
+        "level": 80
+      },
+      {
+        "name": "Latex, HTML, Markdown",
+        "level": 80
+      },
+      {
+        "name": "CSS, React, Three.js",
+        "level": 75
+      }
+    ]
+  },
+  {
+    "category": "Machine Learning & Foundation Models",
+    "icon": "fas fa-code",
+    "skill-bar": true,
+    "skills": [
+      {
+        "name": "Foundation Models - LLM | VLM | VLA",
+        "level": 70
+      },
+      {
+        "name": "Deep Reinforcement Learning",
+        "level": 85
+      },
+      {
+        "name": "Generative Models - Diffusion | Flow-Matching | VAE",
+        "level": 70
+      },
+      {
+        "name": "Deep Learning",
+        "level": 75
+      },
+      {
+        "name": "Computer Vision",
+        "level": 65
+      },
+      {
+        "name": "Machine Learning",
         "level": 80
       }
     ]
@@ -70,9 +103,10 @@
   {
     "category": "Tools & Others",
     "icon": "fas fa-tools",
+    "skill-bar": false,
     "skills": [
       {
-        "name": "Robot Operating System (ROS1 & ROS2)",
+        "name": "Robot Operating System - ROS | ROS2",
         "level": 90
       },
       {
@@ -80,16 +114,20 @@
         "level": 90
       },
       {
-        "name": "CAD - SolidWorks, OnShape",
+        "name": "CAD & Design - SolidWorks, OnShape",
         "level": 80
       },
       {
-        "name": "MATLAB, Simulink, Unity",
+        "name": "Unity, MATLAB, Simulink",
         "level": 60
       },
       {
         "name": "Git, CI/CD, Docker",
         "level": 80
+      },
+      {
+        "name": "Linux, Bash Scripting",
+        "level": 60
       }
     ]
   }
