@@ -13,7 +13,7 @@ export const particlesConfig: ILoadParams = {
       detectsOn: "window",
       events: {
         onHover: {
-          enable: true,
+          enable: false,
           mode: "grab",
           parallax: {
             enable: true,

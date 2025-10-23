@@ -7,14 +7,14 @@
       href="https://scholar.google.com/citations?user=Owl4GugAAAAJ"
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-block rounded-lg bg-indigo-400 px-8 py-3 text-black shadow-lg transition-colors duration-300 hover:bg-indigo-300 dark:bg-indigo-600 dark:text-white dark:hover:bg-indigo-700">
+      class="bg-accent-2 text-foreground hover:bg-accent-1 inline-block rounded-lg px-8 py-3 shadow-lg transition-colors duration-300">
       View on Google Scholar
       <i class="fas fa-external-link-alt ml-2"></i>
     </a>
   </div>
   <div
     id="copy-citation-popup"
-    class="pointer-events-none fixed bottom-8 left-1/2 -translate-x-1/2 transform rounded-lg bg-green-500 px-4 py-2 text-sm text-white opacity-0 shadow-lg transition-all duration-300">
+    class="bg-accent-2 text-foreground pointer-events-none fixed top-20 right-4 transform rounded-lg px-4 py-2 text-sm opacity-0 shadow-lg transition-all duration-300">
     Citation copied to clipboard!
   </div>
   <div
@@ -23,23 +23,23 @@
     aria-modal="true"
     aria-labelledby="citation-modal-title"
     class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-gray-500/50 p-6 opacity-0 transition-opacity duration-300 md:p-12">
-    <div class="max-w-150 rounded bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Citation</h2>
+    <div class="bg-background-muted max-w-150 rounded p-6 shadow-lg">
+      <h2 class="text-foreground mb-4 text-lg font-semibold">Citation</h2>
       <pre
         id="citation-text"
-        class="min-h-30 rounded bg-gray-100 p-3 text-sm break-words whitespace-pre-wrap text-gray-800 dark:bg-gray-700 dark:text-gray-200"></pre>
+        class="text-foreground min-h-30 rounded bg-gray-700 p-3 text-sm break-words whitespace-pre-wrap"></pre>
       <div class="mt-4 flex justify-between">
         <button
           id="button-copy-citation"
           aria-label="Copy citation to clipboard"
-          class="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+          class="bg-accent-2 text-foreground hover:bg-accent-1 rounded px-4 py-2">
           <i class="fas fa-copy pr-2"></i>
           Copy
         </button>
         <button
           id="button-close-modal"
           aria-label="Close citation modal"
-          class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          class="text-foreground-muted hover:text-foreground">
           Close
         </button>
       </div>

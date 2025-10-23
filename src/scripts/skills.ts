@@ -19,11 +19,11 @@ export function initSkills(): void {
 
     if (category["skill-bar"]) {
       section.className =
-        "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-3 row-span-1 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+        "bg-background-muted p-8 lg:col-span-3 row-span-1 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-accent-0/50";
 
       section.innerHTML = `
     <h3 class="text-xl font-semibold mb-4 flex items-center">
-      <i class="${category.icon} text-indigo-500 mr-2"></i> ${category.category}
+      <i class="${category.icon} text-accent-1 mr-2"></i> ${category.category}
     </h3>
     <div class="space-y-4">
       ${category.skills
@@ -33,9 +33,9 @@ export function initSkills(): void {
         <div class="flex justify-between mb-1 font-semibold">
           <span>${skill.name}</span>
         </div>
-        <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5">
+        <div class="w-full bg-gray-700 rounded-full h-2.5">
           <div
-            class="skill-bar h-2.5 rounded-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 transition-all duration-1000 opacity-0"
+            class="skill-bar h-2.5 rounded-full bg-gradient-to-r from-accent-2 to-accent-0 transition-all duration-1000 opacity-0"
             style="width: 0%"
             data-level="${skill.level}%">
           </div>
@@ -48,11 +48,11 @@ export function initSkills(): void {
   `;
     } else {
       section.className =
-        "bg-gray-200 dark:bg-gray-800 p-8 lg:col-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-indigo-400/50";
+        "bg-background-muted p-8 lg:col-span-2 rounded-lg shadow-lg transition-transform transform hover:scale-105 group hover:shadow-2xl hover:ring-2 hover:ring-accent-0/50";
 
       section.innerHTML = `
         <h3 class="text-xl font-semibold mb-4 flex items-center">
-          <i class="${category.icon} text-indigo-500 mr-2"></i> ${category.category}
+          <i class="${category.icon} text-accent-1 mr-2"></i> ${category.category}
         </h3>
         <div class="space-y-4">
           ${category.skills
@@ -61,7 +61,7 @@ export function initSkills(): void {
               if (index == arr.length - 1) margin = "";
               const html = `
                 <div class="relative ${margin}">
-                  <div class="w-full bg-gradient-to-r dark:from-indigo-600 dark:to-indigo-400 rounded-full inline-block py-2">
+                  <div class="w-full bg-gradient-to-r from-accent-2 to-accent-0 rounded-full inline-block py-2">
                     <div class="flex justify-between px-5 text-sm">
                       <span>${skill.name}</span>
                     </div>
