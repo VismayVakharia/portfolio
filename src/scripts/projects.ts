@@ -71,7 +71,7 @@ function createProjectCard(project: Project): HTMLDivElement {
     tagDiv.appendChild(tagSpan);
 
     tagSpan.className =
-      "bg-indigo-100/60 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs px-3 py-1 rounded-full hover:bg-gray-800 hover:ring-1 hover:ring-indigo-700";
+      "bg-accent-2 text-foreground text-xs px-3 py-1 rounded-full hover:bg-background-muted hover:ring-1 hover:ring-accent-2";
     tagSpan.innerText = tag;
   });
 

@@ -53,11 +53,11 @@ export function initHeader(): void {
 
   const observer = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
-      navbar.classList.add("bg-transparent", "dark:bg-transparent");
-      navbar.classList.remove("bg-gray-100/90", "dark:bg-[#050914]/80", "shadow-xl");
+      navbar.classList.add("bg-transparent");
+      navbar.classList.remove("bg-[#050914]/80", "shadow-xl"); /* TODO */
     } else {
-      navbar.classList.remove("bg-transparent", "dark:bg-transparent");
-      navbar.classList.add("bg-gray-100/90", "dark:bg-[#050914]/80", "shadow-xl");
+      navbar.classList.remove("bg-transparent");
+      navbar.classList.add("bg-[#050914]/80", "shadow-xl");
     }
   });
 
