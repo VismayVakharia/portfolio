@@ -8,7 +8,7 @@
   </a>
 
   <div class="flex items-center space-x-6">
-    <div class="hidden space-x-8 md:flex">
+    <div class="hidden space-x-8 lg:flex">
       <a href="#about" class="text-foreground-muted hover:text-foreground transition-colors">About</a>
       <a href="#skills" class="text-foreground-muted hover:text-foreground transition-colors">Skills</a>
       <a href="#education-experience" class="text-foreground-muted hover:text-foreground transition-colors">Timeline</a>
@@ -19,7 +19,7 @@
 
     <div id="color-picker" class="hidden lg:block"></div>
 
-    <button id="mobile-menu-button" class="text-foreground focus:outline-none md:hidden">
+    <button id="mobile-menu-button" class="text-foreground focus:outline-none lg:hidden">
       <i class="fas fa-bars text-2xl"></i>
     </button>
   </div>
@@ -29,7 +29,7 @@
 
 <div
   id="mobile-menu"
-  class="bg-background fixed top-16 right-0 z-50 w-full origin-top scale-y-0 transform rounded-b-lg text-center shadow-lg transition-transform duration-300 md:hidden">
+  class="bg-background fixed top-16 right-0 z-50 w-full origin-top scale-y-0 transform rounded-b-lg text-center shadow-lg transition-transform duration-300 lg:hidden">
   <div class="flex flex-col divide-y divide-gray-700 pr-4 pl-4">
     <a
       href="#about"
@@ -61,5 +61,6 @@
       class="text-foreground-muted hover:bg-background-muted hover:text-foreground rounded py-4 transition-colors">
       Contact
     </a>
+    <div id="color-picker-mobile" class="m-auto flex py-4"></div>
   </div>
 </div>
