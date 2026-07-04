@@ -1,108 +1,93 @@
-<div class="container mx-auto flex flex-col items-center px-6 md:flex-row">
-  <div class="mt-10 mb-10 flex justify-center md:mt-0 md:mb-0 md:w-1/2">
-    <div class="relative">
-      <div class="border-accent-1 h-64 w-64 overflow-hidden rounded-full border-4 shadow-xl md:h-80 md:w-80">
-        <img id="about-image" class="h-full w-full object-cover" />
-      </div>
-      <div class="bg-accent-2 text-foreground absolute -right-4 -bottom-4 rounded-lg px-4 py-2 shadow-lg">
-        <span class="font-semibold">
-          Robotics Enthusiast
-          <br />
-          Researcher & Engineer
-        </span>
-      </div>
+<div class="mx-auto max-w-2xl px-6">
+  <!-- Photo -->
+  <div class="mb-10 flex justify-center">
+    <div class="border-accent h-52 w-52 overflow-hidden rounded-full border-4 shadow-xl">
+      <img id="about-image" class="h-full w-full object-cover" src="" alt="" />
     </div>
   </div>
 
-  <div class="mt-10 md:w-1/2 md:pl-12">
-    <h1 class="mb-4 text-4xl font-bold md:text-5xl">
-      Hi, I'm
-      <span id="name" class="from-accent-2 to-accent-0 bg-gradient-to-r bg-clip-text text-transparent"></span>
-    </h1>
-    <div class="bg-accent-2 text-foreground relative mb-10 rounded-lg px-4 py-4 text-center text-sm shadow-lg">
-      <span class="font-semibold">
-        Building Intelligence for Robotics via Foundation Models and Learning from Demonstration
-      </span>
-    </div>
+  <!-- Name -->
+  <h1 class="mb-6 text-center text-4xl font-bold">
+    Hi, I'm
+    <span id="name"></span>
+  </h1>
 
-    <div class="flex space-x-4">
-      <a
-        href="https://github.com/VismayVakharia/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group social-link text-foreground hover:text-accent-0 relative text-2xl">
-        <i class="fab fa-github"></i>
-        <span
-          class="text-foreground bg-background-muted pointer-events-none absolute bottom-full left-1/2 mb-2 min-w-max -translate-x-1/2 transform rounded-lg p-2 text-center text-xs opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          Github
-        </span>
-      </a>
-      <a
-        href="https://www.linkedin.com/in/vismay-vakharia/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group social-link text-foreground hover:text-accent-0 relative text-2xl">
-        <i class="fab fa-linkedin"></i>
-        <span
-          class="text-foreground bg-background-muted pointer-events-none absolute bottom-full left-1/2 mb-2 min-w-max -translate-x-1/2 transform rounded-lg p-2 text-center text-xs opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          Linkedin
-        </span>
-      </a>
-      <a
-        href="https://scholar.google.com/citations?hl=en&user=Owl4GugAAAAJ"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group social-link text-foreground hover:text-accent-0 relative text-2xl">
-        <i class="fas fa-graduation-cap"></i>
-        <span
-          class="text-foreground bg-background-muted pointer-events-none absolute bottom-full left-1/2 mb-2 min-w-max -translate-x-1/2 transform rounded-lg p-2 text-center text-xs opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          Google Scholar
-        </span>
-      </a>
-      <a
-        href="https://orcid.org/0009-0001-3400-5534"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group social-link text-foreground hover:text-accent-0 relative text-2xl">
-        <i class="fas fa-brands fa-orcid"></i>
-        <span
-          class="text-foreground bg-background-muted pointer-events-none absolute bottom-full left-1/2 mb-2 min-w-max -translate-x-1/2 transform rounded-lg p-2 text-center text-xs opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          Orcid
-        </span>
-      </a>
-    </div>
+  <!-- Blockquote tagline -->
+  <blockquote class="border-border bg-background-muted mb-10 rounded-r border-l-2 py-3 pr-4 pl-6">
+    <span class="text-foreground-muted">❝</span>
+    <span class="text-foreground-muted ml-1 italic">
+      Robotics Scientist — building intelligent systems that work in the physical world.
+    </span>
+  </blockquote>
 
-    <p class="text-foreground-muted mt-5 mb-8">
-      I am a
-      <span class="font-bold">Robotics Scientist</span>
-      currently based in Bengaluru, building the next generation of intelligence for robotic systems. My approach is
-      rooted in a strong blend of Mechanical Engineering (IIT Gandhinagar) and Computer Science (Georgia Tech), which
-      allows me to effectively integrate software (AI, Control Systems, ROS) with hardware to create functional, smart
-      machines.
+  <!-- Bio -->
+  <div class="text-foreground-muted space-y-4 leading-relaxed">
+    <p>
+      I work at
+      <span class="text-foreground font-medium">TCS Research, Bengaluru</span>
+      on mobile manipulation for retail robotics — teaching robots complex tasks through demonstration and using
+      foundation models for generalization.
     </p>
-    <p class="text-foreground-muted mt-8 mb-8">
-      My current research focuses on leveraging Foundation Models, Learning from Demonstration, and Deep Reinforcement
-      Learning to solve complex, real-world tasks with dual-arm mobile manipulators. The goal is to create autonomous
-      systems that are more intuitive, adaptable, and capable. Outside of my work, I enjoy solving twisty puzzles,
-      exploring math concepts, and playing board games.
+    <p>
+      My background spans Mechanical Engineering at
+      <span class="text-foreground font-medium">IIT Gandhinagar</span>
+      and Computer Science at
+      <span class="text-foreground font-medium">Georgia Tech</span>
+      . This combination means I can work from robot arm physics all the way up to the vision-language model deciding
+      what to pick up.
     </p>
+    <p>
+      Outside of research, I collect twisty puzzles, read broadly, and play board games. Some of that lives on this site
+      too.
+    </p>
+  </div>
 
-    <div class="mt-8 flex space-x-4">
-      <a
-        href="#contact"
-        class="bg-accent-2 text-foreground hover:bg-accent-1 flex items-center rounded-lg px-6 py-3 transition-colors duration-300">
-        <i class="fas fa-envelope mr-2"></i>
-        Contact Me
-      </a>
-      <a
-        href=""
-        target="_blank"
-        rel="noopener noreferrer"
-        id="about-resume"
-        class="border-accent-2 text-accent-0 hover:bg-accent-2 hover:text-foreground flex items-center rounded-lg border px-6 py-3 transition-colors duration-300">
-        <i class="fas fa-download mr-2"></i>
-        Download CV
-      </a>
-    </div>
+  <!-- Social links -->
+  <div class="mt-8 flex space-x-5">
+    <a
+      href="https://github.com/VismayVakharia/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-foreground-muted hover:text-foreground transition-colors">
+      <i class="fab fa-github text-xl"></i>
+    </a>
+    <a
+      href="https://www.linkedin.com/in/vismay-vakharia/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-foreground-muted hover:text-foreground transition-colors">
+      <i class="fab fa-linkedin text-xl"></i>
+    </a>
+    <a
+      href="https://scholar.google.com/citations?hl=en&user=Owl4GugAAAAJ"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-foreground-muted hover:text-foreground transition-colors">
+      <i class="fas fa-graduation-cap text-xl"></i>
+    </a>
+    <a
+      href="https://orcid.org/0009-0001-3400-5534"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-foreground-muted hover:text-foreground transition-colors">
+      <i class="fab fa-orcid text-xl"></i>
+    </a>
+  </div>
+
+  <!-- CTA buttons -->
+  <div class="mt-8 flex space-x-4">
+    <a
+      href="#contact"
+      class="border-border text-foreground-muted hover:border-foreground-muted hover:text-foreground border px-5 py-2 text-sm transition-colors">
+      Contact
+    </a>
+    <a
+      href=""
+      id="about-resume"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="border-accent text-accent hover:bg-accent hover:text-background border px-5 py-2 text-sm transition-colors">
+      Download CV
+    </a>
   </div>
 </div>

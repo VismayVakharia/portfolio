@@ -1,0 +1,83 @@
+<!-- Main navbar -->
+<nav
+  id="navbar"
+  class="border-border bg-background fixed top-0 left-0 z-50 flex h-[57px] w-full items-center justify-between border-b px-6">
+  <a href="/" id="nav-home" class="text-foreground text-lg font-bold tracking-tight">Vismay Vakharia</a>
+
+  <div class="hidden items-center space-x-6 lg:flex">
+    <a href="#" id="nav-shelf" class="text-foreground-muted hover:text-foreground text-sm transition-colors">Shelf</a>
+    <a href="#" id="nav-puzzles" class="text-foreground-muted hover:text-foreground text-sm transition-colors">
+      Puzzles
+    </a>
+  </div>
+
+  <button id="mobile-menu-button" class="text-foreground focus:outline-none lg:hidden">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+</nav>
+
+<!-- Mobile dropdown (Shelf + Puzzles only) -->
+<div id="menu-overlay" class="fixed inset-0 z-40 hidden bg-black/50"></div>
+<div
+  id="mobile-menu"
+  class="bg-background border-border fixed top-[57px] right-0 z-50 w-full origin-top scale-y-0 transform border-b text-center shadow-lg transition-transform duration-300 lg:hidden">
+  <div class="divide-border flex flex-col divide-y px-4">
+    <a
+      href="#"
+      id="nav-shelf-mobile"
+      class="text-foreground-muted hover:text-foreground py-4 text-sm transition-colors">
+      Shelf
+    </a>
+    <a
+      href="#"
+      id="nav-puzzles-mobile"
+      class="text-foreground-muted hover:text-foreground py-4 text-sm transition-colors">
+      Puzzles
+    </a>
+  </div>
+</div>
+
+<!-- Section sub-bar (homepage only — JS removes this on other pages) -->
+<div
+  id="section-subbar"
+  class="border-border bg-background/95 fixed left-0 z-40 w-full overflow-x-auto border-b backdrop-blur-sm"
+  style="top: 57px">
+  <div class="flex min-w-max items-center gap-6 px-6 py-2">
+    <a
+      href="#about"
+      data-section="about"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      About
+    </a>
+    <a
+      href="#skills"
+      data-section="skills"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      Skills
+    </a>
+    <a
+      href="#education-experience"
+      data-section="education-experience"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      Timeline
+    </a>
+    <a
+      href="#projects"
+      data-section="projects"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      Projects
+    </a>
+    <a
+      href="#publications"
+      data-section="publications"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      Publications
+    </a>
+    <a
+      href="#contact"
+      data-section="contact"
+      class="section-link text-foreground-muted hover:text-foreground text-xs whitespace-nowrap transition-colors">
+      Contact
+    </a>
+  </div>
+</div>

@@ -43,12 +43,8 @@ export function initPublications(): void {
 }
 
 function renderPublications(container: HTMLElement, papers: Publication[]): void {
-  const evenCount = papers.length % 2 !== 0 ? papers.length - 1 : papers.length;
-
-  for (let i = 0; i < evenCount; i++) {
-    const paper = papers[i];
-    const card = createPublicationCard(paper);
-    container.appendChild(card);
+  for (const paper of papers) {
+    container.appendChild(createPublicationCard(paper));
   }
 
   container.addEventListener("click", (event) => {

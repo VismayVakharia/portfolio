@@ -13,6 +13,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: "src/index.html",
+        shelf: "src/shelf/index.html",
+        puzzles: "src/puzzles/index.html",
       },
     },
   },

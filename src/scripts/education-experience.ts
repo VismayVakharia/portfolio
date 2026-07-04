@@ -16,7 +16,7 @@ export function initEducation(): void {
     });
   });
 
-  document.querySelectorAll<HTMLDivElement>("#timeline-item").forEach((el) => {
+  document.querySelectorAll<HTMLDivElement>(".timeline-item").forEach((el) => {
     observer.observe(el);
   });
 }

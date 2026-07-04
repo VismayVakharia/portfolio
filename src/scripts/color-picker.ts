@@ -1,98 +1,65 @@
-import colorPickerHTML from "../components/color-picker.html?raw";
+const palettes = {
+  teal: { darkAccent: "#5b9ca3", lightAccent: "#3d7a82" },
+  copper: { darkAccent: "#c8845a", lightAccent: "#9a5a30" },
+  indigo: { darkAccent: "#7c86ff", lightAccent: "#4a52cc" },
+  rose: { darkAccent: "#e05a7a", lightAccent: "#b03050" },
+  emerald: { darkAccent: "#5aad7a", lightAccent: "#3a8558" },
+  violet: { darkAccent: "#a45ad4", lightAccent: "#7a38a8" },
+} as const;
 
-import { colorPalettes, ColorPaletteName } from "./color-palette.ts";
+export type PaletteName = keyof typeof palettes;
 
-function setAccentColor(color: ColorPaletteName): void {
-  const root = document.documentElement;
-  const palette = colorPalettes[color];
-
-  root.style.setProperty("--color-accent-0", palette.accent0);
-  root.style.setProperty("--color-accent-1", palette.accent1);
-  root.style.setProperty("--color-accent-2", palette.accent2);
-
-  localStorage.setItem("accentColor", color);
-
-  document.documentElement.dispatchEvent(new Event("accentChange"));
+export function applyPalette(name: PaletteName): void {
+  if (name === "teal") {
+    document.documentElement.removeAttribute("data-accent");
+  } else {
+    document.documentElement.dataset.accent = name;
+  }
+  localStorage.setItem("accentPalette", name);
 }
 
-export function initColorPicker(): void {
-  const colorPicker = document.getElementById("color-picker") as HTMLDivElement;
+export function initEasterEgg(): void {
+  const trigger = document.getElementById("color-easter-egg");
+  if (!trigger) return;
 
-  colorPicker.innerHTML = colorPickerHTML;
-  colorPicker.children[0].classList.add(
-    ..."group overflow-hidden transition-all duration-300 ease-in-out hover:w-59".split(" ")
-  );
+  let panel: HTMLDivElement | null = null;
+  let open = false;
 
-  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  function showPanel() {
+    panel = document.createElement("div");
+    panel.className =
+      "fixed bottom-14 right-4 z-[60] flex gap-2 rounded border border-border bg-background p-3 shadow-xl";
 
-  if (isTouch) {
-    colorPicker.addEventListener("click", () => {
-      if (colorSwatches.classList.contains("opacity-0")) {
-        colorPicker.children[0].classList.remove("w-10");
-        colorPicker.children[0].classList.add("w-59");
-        colorSwatches.classList.remove("opacity-0");
-        colorSwatches.classList.add("opacity-100");
-      } else {
-        colorPicker.children[0].classList.remove("w-59");
-        colorPicker.children[0].classList.add("w-10");
-        colorSwatches.classList.remove("opacity-100");
-        colorSwatches.classList.add("opacity-0");
-      }
+    Object.entries(palettes).forEach(([name, palette]) => {
+      const btn = document.createElement("button");
+      btn.className = "h-6 w-6 rounded-full transition-transform hover:scale-125 focus:outline-none";
+      btn.style.background = `linear-gradient(135deg, ${palette.darkAccent}, ${palette.lightAccent})`;
+      btn.setAttribute("aria-label", `Switch to ${name} accent`);
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        applyPalette(name as PaletteName);
+        hidePanel();
+      });
+      panel!.appendChild(btn);
     });
+
+    document.body.appendChild(panel);
+    open = true;
   }
 
-  const colorPickerMobile = document.getElementById("color-picker-mobile") as HTMLDivElement;
-
-  colorPickerMobile.innerHTML = colorPickerHTML;
-
-  const colorSwatches = document.createElement("div");
-  (colorPicker.children[0] as HTMLDivElement).appendChild(colorSwatches);
-  colorSwatches.classList.add(
-    ..."ml-2 flex gap-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100".split(
-      " "
-    )
-  );
-
-  const colorSwatchesMobile = document.createElement("div");
-  colorPickerMobile.appendChild(colorSwatchesMobile);
-  colorSwatchesMobile.classList.add(..."ml-2 py-2 flex gap-2".split(" "));
-
-  let buttons = "";
-
-  Object.keys(colorPalettes).forEach((color) => {
-    const palette = colorPalettes[color as ColorPaletteName];
-    buttons = buttons.concat(`
-      <button
-      class="h-6 w-6 rounded-full hover:border-foreground border-gray-700"
-      style="background: linear-gradient(to right, ${palette.accent0}, ${palette.accent2}); border-width: 2px"
-      data-color="${color}"></button>
-      `);
-  });
-
-  colorSwatches.innerHTML = buttons;
-  colorSwatchesMobile.innerHTML = buttons;
-
-  colorSwatches.querySelectorAll("button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const color = btn.getAttribute("data-color");
-      if (!color) return;
-
-      setAccentColor(color as ColorPaletteName);
-    });
-  });
-  colorSwatchesMobile.querySelectorAll("button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const color = btn.getAttribute("data-color");
-      if (!color) return;
-
-      setAccentColor(color as ColorPaletteName);
-    });
-  });
-
-  const savedColor = localStorage.getItem("accentColor") as ColorPaletteName;
-  if (savedColor) {
-    setAccentColor(savedColor);
-    return;
+  function hidePanel() {
+    panel?.remove();
+    panel = null;
+    open = false;
   }
-  setAccentColor("teal");
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (open) hidePanel();
+    else showPanel();
+  });
+
+  document.addEventListener("click", () => {
+    if (open) hidePanel();
+  });
 }

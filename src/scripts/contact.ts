@@ -3,206 +3,68 @@ export function initContact(): void {
   if (!contact) return;
 
   contact.innerHTML = `
-    <div class="container mx-auto px-6">
-        <h2 class="section-title text-3xl font-bold text-center mb-16">Get In Touch</h2>
+    <div class="container mx-auto max-w-xl px-6">
+      <h2 class="section-title text-3xl font-bold mb-16">Contact</h2>
+      <p class="text-foreground-muted mb-8 leading-relaxed">
+        I'm open to research collaborations, robotics engineering conversations, and interesting projects.
+      </p>
 
-        <div class="flex flex-col lg:flex-row gap-12">
-            <!-- Contact Info -->
-            <div class="w-full lg:w-1/3">
-                <div class="bg-background-muted p-6 rounded-lg shadow-lg mb-6">
-                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-                    <div class="space-y-4">
-                        <div id="email-container" class="flex items-start relative group">
-                            <div class="bg-accent-2/20 p-3 rounded-lg mr-4 w-12 text-center">
-                                <i class="fas fa-envelope text-accent-0"></i>
-                            </div>
-
-                            <div class="block items-center space-x-2">
-                                <div class="flex">
-                                    <p class="text-foreground-muted text-sm">Email</p>
-                                    <button id="copy-email-btn"
-                                        class="ml-2 opacity-100 xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-300 text-accent-1 hover:text-accent-0 cursor-pointer top-0 right-0"
-                                        title="Copy email">
-                                        <i class="fas fa-copy"></i>
-                                    </button>
-                                </div>
-                                <a href="mailto:contact@vismayvakharia.com" id="email-text"
-                                    class="text-accent-1 hover:text-accent-0">
-                                    contact@vismayvakharia.com
-                                </a>
-                            </div>
-
-                            <div id="copy-popup" class="fixed bottom-8 left-1/2 transform -translate-x-1/2
-                                            bg-accent-2 text-foreground text-sm px-4 py-2 rounded-lg
-                                            opacity-0 transition-all duration-300 pointer-events-none
-                                            shadow-lg">
-                                Email copied to clipboard!
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-accent-2/20 p-3 rounded-lg mr-4 w-12 text-center">
-                                <i class="fas fa-map-marker-alt text-accent-0"></i>
-                            </div>
-                            <div>
-                                <p class="text-foreground-muted text-sm">Location</p>
-                                <p class="text-foreground">Bengaluru, KA, India</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-background-muted p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-4">Connect With Me</h3>
-                    <div class="flex space-x-4 mt-4">
-                        <a href="https://github.com/VismayVakharia" target="_blank" rel="noopener noreferrer"
-                            class="group flex items-center overflow-hidden bg-gray-700 hover:bg-accent-2 transition-all duration-300 ease-in-out rounded-full pr-4 pl-3 h-10 w-10 hover:w-24">
-                            <i class="fab fa-github text-foreground fa-md"></i>
-                            <span
-                                class="ml-2 text-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-10px] transition-all duration-300 text-sm whitespace-nowrap">
-                                GitHub
-                            </span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/vismay-vakharia/" target="_blank" rel="noopener noreferrer"
-                            class="group flex items-center overflow-hidden bg-gray-700 hover:bg-accent-2 transition-all duration-300 ease-in-out rounded-full pr-4 pl-3 h-10 w-10 hover:w-26">
-                            <i class="fab fa-linkedin-in text-foreground fa-md"></i>
-                            <span
-                                class="ml-2 text-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-10px] transition-all duration-300 text-sm whitespace-nowrap">
-                                Linkedin
-                            </span>
-                        </a>
-                        <a href="https://scholar.google.com/citations?user=Owl4GugAAAAJ" target="_blank"
-                            rel="noopener noreferrer"
-                            class="group flex items-center overflow-hidden bg-gray-700 hover:bg-accent-2 transition-all duration-300 ease-in-out rounded-full pr-4 pl-3 h-10 w-10 hover:w-39">
-                            <i class="fas fa-graduation-cap text-foreground fa-md"></i>
-                            <span
-                                class="ml-2 text-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-10px] transition-all duration-300 text-sm whitespace-nowrap">
-                                Google Scholar
-                            </span>
-                        </a>
-                        <a href="https://orcid.org/0009-0001-3400-5534" target="_blank" rel="noopener noreferrer"
-                            class="group flex items-center overflow-hidden bg-gray-700 hover:bg-accent-2 transition-all duration-300 ease-in-out rounded-full pr-4 pl-3 h-10 w-10 hover:w-22">
-                            <i class="fab fa-brands fa-orcid text-foreground fa-md"></i>
-                            <span
-                                class="ml-2 text-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-10px] transition-all duration-300 text-sm whitespace-nowrap">
-                                Orcid
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact Form -->
-            <div class="w-full lg:w-2/3">
-                <div class="bg-background-muted p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-6">Send Me a Message</h3>
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name"
-                                    class="block mb-2 text-sm font-medium text-foreground">Your
-                                    Name</label>
-                                <input type="text" id="name" name="name" class="bg-gray-700 text-foreground text-sm rounded-lg focus:ring-accent-1
-                                            focus:border-accent-1 block w-full p-3" placeholder="John Doe" required>
-                            </div>
-                            <div>
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Your
-                                    Email</label>
-                                <input type="email" id="email" name="email" class="bg-gray-700 text-foreground text-sm rounded-lg focus:ring-accent-1
-                                            focus:border-accent-1 block w-full p-3" placeholder="john@example.com"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="subject"
-                                class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Subject</label>
-                            <input type="text" id="subject" name="subject" class="bg-gray-700 text-foreground text-sm rounded-lg focus:ring-accent-1
-                                        focus:border-accent-1 block w-full p-3" placeholder="Project Inquiry" required>
-                        </div>
-
-                        <div>
-                            <label for="message"
-                                class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Your Message</label>
-                            <textarea id="message" rows="6" name="message" class="bg-gray-700 text-foreground text-sm rounded-lg focus:ring-accent-1
-                                            focus:border-accent-1 block w-full p-3"
-                                placeholder="I'd like to discuss a project..." required></textarea>
-                        </div>
-
-                        <button type="submit" id="submit-button" class="w-full bg-accent-2 hover:bg-accent-1 text-foreground font-medium py-3 px-6 rounded-lg
-                                        transition-colors duration-300 shadow-lg flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-2"></i> Send Message
-                        </button>
-                    </form>
-                </div>
-            </div>
+      <div class="space-y-3">
+        <div class="flex items-center space-x-3">
+          <a href="mailto:contact@vismayvakharia.com" id="email-text"
+            class="text-foreground hover:text-accent transition-colors">
+            contact@vismayvakharia.com
+          </a>
+          <button id="copy-email-btn"
+            class="text-foreground-muted hover:text-foreground transition-colors" title="Copy email">
+            <i class="fas fa-copy text-sm"></i>
+          </button>
         </div>
+        <p class="text-foreground-muted text-sm">Bengaluru, KA, India</p>
+      </div>
+
+      <div class="mt-8 flex space-x-5">
+        <a href="https://github.com/VismayVakharia/" target="_blank" rel="noopener noreferrer"
+          class="text-foreground-muted hover:text-foreground transition-colors">
+          <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://linkedin.com/in/vismay-vakharia/" target="_blank" rel="noopener noreferrer"
+          class="text-foreground-muted hover:text-foreground transition-colors">
+          <i class="fab fa-linkedin-in text-xl"></i>
+        </a>
+        <a href="https://scholar.google.com/citations?user=Owl4GugAAAAJ" target="_blank" rel="noopener noreferrer"
+          class="text-foreground-muted hover:text-foreground transition-colors">
+          <i class="fas fa-graduation-cap text-xl"></i>
+        </a>
+        <a href="https://orcid.org/0009-0001-3400-5534" target="_blank" rel="noopener noreferrer"
+          class="text-foreground-muted hover:text-foreground transition-colors">
+          <i class="fab fa-orcid text-xl"></i>
+        </a>
+      </div>
+
+      <div id="copy-popup" class="fixed bottom-8 left-1/2 -translate-x-1/2
+        bg-background-muted text-foreground text-sm px-4 py-2 rounded border border-border
+        opacity-0 transition-opacity duration-300 pointer-events-none shadow-lg">
+        Email copied!
+      </div>
     </div>
   `;
 
   const emailText = document.getElementById("email-text") as HTMLAnchorElement;
-  const copyIconButton = document.getElementById("copy-email-btn") as HTMLButtonElement;
+  const copyBtn = document.getElementById("copy-email-btn") as HTMLButtonElement;
   const copyPopup = document.getElementById("copy-popup") as HTMLDivElement;
 
-  async function copyEmail() {
-    const email = emailText.innerText.trim();
-
+  copyBtn.addEventListener("click", async () => {
     try {
-      await navigator.clipboard.writeText(email);
-
+      await navigator.clipboard.writeText(emailText.innerText.trim());
       copyPopup.classList.remove("opacity-0");
       copyPopup.classList.add("opacity-100");
-
-      copyIconButton.classList.add("animate-spin");
-
       setTimeout(() => {
         copyPopup.classList.remove("opacity-100");
         copyPopup.classList.add("opacity-0");
-
-        copyIconButton.classList.remove("animate-spin");
       }, 2000);
     } catch (err) {
       console.error("Failed to copy email:", err);
     }
-  }
-
-  copyIconButton.addEventListener("click", copyEmail);
-
-  const contactForm = document.getElementById("contact-form") as HTMLFormElement;
-  const submitButton = document.getElementById("submit-button") as HTMLButtonElement;
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(contactForm);
-
-      submitButton.disabled = true;
-      submitButton.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Sending...`;
-
-      try {
-        const response = await fetch("https://formspree.io/f/xwpkvdjo", {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (response.ok) {
-          console.log(response);
-          alert("Thank you for your message!");
-          contactForm.reset();
-        } else {
-          alert("Oops! There was a problem submitting your form.");
-        }
-      } catch (error) {
-        console.error(error);
-        alert("There was an error submitting the form.");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.innerHTML = `<i class="fas fa-paper-plane mr-2"></i> Send Message`;
-      }
-    });
-  }
+  });
 }

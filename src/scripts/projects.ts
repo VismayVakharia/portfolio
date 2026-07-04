@@ -1,6 +1,6 @@
 import projects from "../data/projects.json";
 import projectsHTML from "../components/projects.html?raw";
-import projectCardHTML from "../components/project-card.html?raw";
+import projectCardHTML from "../components/project-card/project-card.html?raw";
 
 type Project = {
   title: string;
@@ -70,8 +70,7 @@ function createProjectCard(project: Project): HTMLDivElement {
     const tagSpan = document.createElement("span");
     tagDiv.appendChild(tagSpan);
 
-    tagSpan.className =
-      "bg-accent-2 text-foreground text-xs px-3 py-1 rounded-full hover:bg-background-muted hover:ring-1 hover:ring-accent-2";
+    tagSpan.className = "bg-accent/10 text-accent border border-accent/25 px-2 py-0.5 rounded text-xs";
     tagSpan.innerText = tag;
   });
 

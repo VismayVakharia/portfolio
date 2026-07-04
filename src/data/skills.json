@@ -1,134 +1,40 @@
 [
   {
-    "category": "Robotics & Core Systems",
-    "icon": "fas fa-code",
-    "skill-bar": true,
+    "category": "Robotics",
     "skills": [
-      {
-        "name": "Dual-Arm Mobile Manipulation",
-        "level": 85
-      },
-      {
-        "name": "Learning from Demonstration",
-        "level": 75
-      },
-      {
-        "name": "Shared Autonomy | Human-in-the-Loop Control",
-        "level": 90
-      },
-      {
-        "name": "Whole-Body Control",
-        "level": 75
-      },
-      {
-        "name": "Task & Motion Planning",
-        "level": 80
-      },
-      {
-        "name": "Simultaneous Localization & Mapping (SLAM)",
-        "level": 70
-      },
-      {
-        "name": "Control & Estimation",
-        "level": 75
-      }
+      "Mobile Manipulation",
+      "Learning from Demonstration",
+      "Shared Autonomy",
+      "Whole-Body Control",
+      "Task & Motion Planning",
+      "SLAM",
+      "Control & Estimation"
     ]
   },
   {
-    "category": "Languages & Libraries",
-    "icon": "fas fa-layer-group",
-    "skill-bar": false,
+    "category": "Machine Learning",
     "skills": [
-      {
-        "name": "Python, C++, Typescript, Javascript",
-        "level": 90
-      },
-      {
-        "name": "PyTorch, TensorFlow",
-        "level": 75
-      },
-      {
-        "name": "Scikit Learn, Hugging Face",
-        "level": 60
-      },
-      {
-        "name": "NumPy, SciPy, Matplotlib, Pandas",
-        "level": 75
-      },
-      {
-        "name": "OpenCV, NetworkX, spaCy",
-        "level": 80
-      },
-      {
-        "name": "Latex, HTML, Markdown",
-        "level": 80
-      },
-      {
-        "name": "CSS, React, Three.js",
-        "level": 75
-      }
+      "Foundation Models",
+      "LLMs / VLMs / VLAs",
+      "Deep Reinforcement Learning",
+      "Computer Vision",
+      "Generative Models"
     ]
   },
   {
-    "category": "Machine Learning & Foundation Models",
-    "icon": "fas fa-code",
-    "skill-bar": true,
-    "skills": [
-      {
-        "name": "Foundation Models - LLM | VLM | VLA",
-        "level": 70
-      },
-      {
-        "name": "Deep Reinforcement Learning",
-        "level": 85
-      },
-      {
-        "name": "Generative Models - Diffusion | Flow-Matching | VAE",
-        "level": 70
-      },
-      {
-        "name": "Deep Learning",
-        "level": 75
-      },
-      {
-        "name": "Computer Vision",
-        "level": 65
-      },
-      {
-        "name": "Machine Learning",
-        "level": 80
-      }
-    ]
+    "category": "Languages",
+    "skills": ["Python", "C++", "TypeScript", "JavaScript"]
   },
   {
-    "category": "Tools & Others",
-    "icon": "fas fa-tools",
-    "skill-bar": false,
-    "skills": [
-      {
-        "name": "Robot Operating System - ROS | ROS2",
-        "level": 90
-      },
-      {
-        "name": "Simulators - Isaac Sim, Genesis, MuJoCo, Gazebo",
-        "level": 90
-      },
-      {
-        "name": "CAD & Design - SolidWorks, OnShape",
-        "level": 80
-      },
-      {
-        "name": "Unity, MATLAB, Simulink",
-        "level": 60
-      },
-      {
-        "name": "Git, CI/CD, Docker",
-        "level": 80
-      },
-      {
-        "name": "Linux, Bash Scripting",
-        "level": 60
-      }
-    ]
+    "category": "Libraries",
+    "skills": ["PyTorch", "TensorFlow", "NumPy", "OpenCV", "Hugging Face", "spaCy", "scikit-learn"]
+  },
+  {
+    "category": "Tools",
+    "skills": ["ROS / ROS2", "Isaac Sim", "MuJoCo", "Gazebo", "Docker", "Git / CI", "Linux"]
+  },
+  {
+    "category": "Design & Sim",
+    "skills": ["SolidWorks", "OnShape", "MATLAB", "Simulink", "Unity"]
   }
 ]

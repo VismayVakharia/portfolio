@@ -1,45 +1,47 @@
 <div class="container mx-auto px-6">
   <h2 class="section-title mb-16 text-center text-3xl font-bold">Publications</h2>
-  <div id="publications-container" class="grid grid-cols-1 gap-8 md:grid-cols-2"></div>
+  <div id="publications-container" class="grid grid-cols-1 gap-6 md:grid-cols-2"></div>
 
   <div class="mt-12 text-center">
     <a
       href="https://scholar.google.com/citations?user=Owl4GugAAAAJ"
       target="_blank"
       rel="noopener noreferrer"
-      class="bg-accent-2 text-foreground hover:bg-accent-1 inline-block rounded-lg px-8 py-3 shadow-lg transition-colors duration-300">
+      class="border-accent text-accent hover:bg-accent hover:text-background inline-block rounded-lg border px-8 py-3 transition-colors duration-300">
       View on Google Scholar
       <i class="fas fa-external-link-alt ml-2"></i>
     </a>
   </div>
+
   <div
     id="copy-citation-popup"
-    class="bg-accent-2 text-foreground pointer-events-none fixed top-20 right-4 transform rounded-lg px-4 py-2 text-sm opacity-0 shadow-lg transition-all duration-300">
+    class="bg-background-muted text-foreground border-border pointer-events-none fixed top-20 right-4 rounded-lg border px-4 py-2 text-sm opacity-0 shadow-lg transition-all duration-300">
     Citation copied to clipboard!
   </div>
+
   <div
     id="citation-modal"
     role="dialog"
     aria-modal="true"
     aria-labelledby="citation-modal-title"
-    class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-gray-500/50 p-6 opacity-0 transition-opacity duration-300 md:p-12">
-    <div class="bg-background-muted max-w-150 rounded p-6 shadow-lg">
-      <h2 class="text-foreground mb-4 text-lg font-semibold">Citation</h2>
+    class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-6 opacity-0 transition-opacity duration-300 md:p-12">
+    <div class="bg-background-muted border-border w-full max-w-2xl rounded border p-6 shadow-xl">
+      <h2 class="text-foreground mb-4 text-base font-semibold">Citation</h2>
       <pre
         id="citation-text"
-        class="text-foreground min-h-30 rounded bg-gray-700 p-3 text-sm break-words whitespace-pre-wrap"></pre>
+        class="text-foreground-muted bg-background border-border min-h-20 rounded border p-3 text-sm leading-relaxed break-words whitespace-pre-wrap"></pre>
       <div class="mt-4 flex justify-between">
         <button
           id="button-copy-citation"
           aria-label="Copy citation to clipboard"
-          class="bg-accent-2 text-foreground hover:bg-accent-1 rounded px-4 py-2">
+          class="bg-accent/10 text-accent border-accent/20 hover:bg-accent/20 rounded border px-4 py-2 text-sm transition-colors">
           <i class="fas fa-copy pr-2"></i>
           Copy
         </button>
         <button
           id="button-close-modal"
           aria-label="Close citation modal"
-          class="text-foreground-muted hover:text-foreground">
+          class="text-foreground-muted hover:text-foreground text-sm transition-colors">
           Close
         </button>
       </div>

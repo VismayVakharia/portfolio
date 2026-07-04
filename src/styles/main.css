@@ -1,15 +1,56 @@
 @import "tailwindcss";
-@import "./poppins-fonts.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 
 @theme {
-  --color-background: #101828;
-  --color-background-muted: #1e2939;
-  --color-foreground: #ffffff;
-  --color-foreground-muted: #99a1af;
-  --color-accent-0: #7c86ff; /* indigo 400 */
-  --color-accent-1: #615fff; /* indigo 500 */
-  --color-accent-2: #4f39f6; /* indigo 600 */
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-background: #111111;
+  --color-background-muted: #1a1a1a;
+  --color-foreground: #e8e8e8;
+  --color-foreground-muted: #666666;
+  --color-accent: #5b9ca3;
+  --color-border: #2a2a2a;
+}
+
+html.light {
+  --color-background: #f0f6f6;
+  --color-background-muted: #e4eded;
+  --color-foreground: #1a1a1a;
+  --color-foreground-muted: #5a5a5a;
+  --color-accent: #3d7a82;
+  --color-border: #cdd8d8;
+}
+
+/* Easter egg colour palettes — applied via html[data-accent="name"] */
+html[data-accent="copper"] {
+  --color-accent: #c8845a;
+}
+html[data-accent="copper"].light {
+  --color-accent: #9a5a30;
+}
+html[data-accent="indigo"] {
+  --color-accent: #7c86ff;
+}
+html[data-accent="indigo"].light {
+  --color-accent: #4a52cc;
+}
+html[data-accent="rose"] {
+  --color-accent: #e05a7a;
+}
+html[data-accent="rose"].light {
+  --color-accent: #b03050;
+}
+html[data-accent="emerald"] {
+  --color-accent: #5aad7a;
+}
+html[data-accent="emerald"].light {
+  --color-accent: #3a8558;
+}
+html[data-accent="violet"] {
+  --color-accent: #a45ad4;
+}
+html[data-accent="violet"].light {
+  --color-accent: #7a38a8;
 }
 
 html {
@@ -17,7 +58,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "JetBrains Mono", monospace;
   line-height: 1.6;
   overflow-x: hidden;
   transition:
@@ -36,9 +77,9 @@ body {
   position: absolute;
   left: 0;
   bottom: -0.5rem;
-  height: 3px;
+  height: 2px;
   width: 50%;
-  background: linear-gradient(90deg, var(--color-accent-2), var(--color-accent-1));
+  background: var(--color-accent);
 }
 
 .social-link {
@@ -49,7 +90,7 @@ body {
 
 .social-link:hover {
   transform: translateY(-3px);
-  color: var(--color-accent-2);
+  color: var(--color-accent);
 }
 
 @layer utilities {

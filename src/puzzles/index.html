@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vismay Vakharia | Portfolio</title>
+    <title>Puzzles | Vismay Vakharia</title>
 
     <script>
       if (localStorage.getItem("theme") === "light") document.documentElement.classList.add("light");
@@ -15,23 +15,18 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet" />
 
-    <script type="module" src="/index.ts"></script>
+    <script type="module" src="/puzzles/puzzles.ts"></script>
 
     <link id="favicon" rel="icon" type="image/png" href="" />
   </head>
 
   <body class="bg-background text-foreground font-mono">
-    <header id="header" class="relative z-9999"></header>
+    <header id="header"></header>
 
-    <main class="relative z-10 pt-[94px] pb-11">
-      <section id="about" class="flex min-h-screen items-center justify-center py-16"></section>
-      <section id="skills" class="bg-background-muted/60 py-16"></section>
-      <section id="education-experience" class="py-16"></section>
-      <section id="projects" class="bg-background-muted/60 py-16"></section>
-      <section id="publications" class="py-16"></section>
-      <section id="contact" class="bg-background-muted/60 py-16"></section>
+    <main class="mx-auto max-w-3xl px-6 pt-[73px] pb-16">
+      <section id="puzzles"></section>
     </main>
 
-    <footer id="footer" class="relative z-10"></footer>
+    <footer id="footer"></footer>
   </body>
 </html>
