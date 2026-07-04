@@ -1,0 +1,40 @@
+name: Refresh hobby data
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # daily at 6am UTC
+  workflow_dispatch: # allow manual trigger
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # needed for git-auto-commit-action to push
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Fetch hobby data
+        run: npm run fetch-data
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID: ${{ secrets.STEAM_ID }}
+          PSN_NPSSO: ${{ secrets.PSN_NPSSO }}
+          JELU_URL: ${{ secrets.JELU_URL }}
+          JELU_TOKEN: ${{ secrets.JELU_TOKEN }}
+
+      - name: Commit updated data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh hobby data"
+          file_pattern: >-
+            src/data/steam-games.json
+            src/data/psn-games.json
+            src/data/jelu-books.json
