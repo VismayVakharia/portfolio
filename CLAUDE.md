@@ -17,35 +17,60 @@ The pre-commit hook runs `lint-staged`, which auto-runs Prettier + ESLint on sta
 
 ## Architecture
 
-This is a **vanilla TypeScript + Vite** site with no JS framework.
+This is a **vanilla TypeScript + Vite** MPA (multi-page app) with no JS framework.
+
+### Pages
+
+| Entry HTML | Entry TS | URL |
+|---|---|---|
+| `src/index.html` | `src/index.ts` | `/` — professional portfolio |
+| `src/shelf/index.html` | `src/shelf/shelf.ts` | `/shelf/` — books + games |
+| `src/puzzles/index.html` | `src/puzzles/puzzles.ts` | `/puzzles/` — puzzle collection |
+
+All three are registered in `vite.config.ts` under `rollupOptions.input`. Vite `root` is `src/`, so script `src` attributes in HTML use paths like `/index.ts`, `/shelf/shelf.ts`.
 
 ### Rendering pattern
 
-`src/index.html` defines empty `<section>` placeholders. On `DOMContentLoaded`, `src/index.ts` calls each section's `init*()` function. Each init function:
+Each page's entry TS file calls shared `init*()` functions on `DOMContentLoaded`. Each init function:
 1. Imports its HTML template via Vite's `?raw` suffix (e.g., `import aboutHTML from "../components/about.html?raw"`)
 2. Injects it into the DOM via `innerHTML`
 3. Queries the injected elements and wires up event listeners or populates dynamic data
 
+Every page calls `initTheme()` first (applies saved theme/palette), then `initHeader()`, section inits, `initFooter()`. The homepage also calls `initScrollSpy()` last (after all sections are rendered).
+
 ### Key directories
 
-- `src/components/` — HTML templates (some are flat `.html` files, some are directories containing both `.html` and `.ts`)
-- `src/scripts/` — One `init*()` function per section; `color-palette.ts` and `particles-config.ts` are shared utilities
-- `src/data/` — JSON files (`projects.json`, `publications.json`, `skills.json`) that drive dynamic section content
+- `src/components/` — HTML templates; components with both HTML and TS logic live in subdirectories (`header/`, `footer/`, `color-picker/`, `project-card/`)
+- `src/scripts/` — Section init functions (`about.ts`, `skills.ts`, etc.) and shared utilities (`theme.ts`, `color-picker.ts`)
+- `src/data/` — JSON files driving dynamic content: `projects.json`, `publications.json`, `skills.json`, `books.json`, `games.json`, `puzzles.json`
 - `public/assets/` — Static assets (images, PDFs, favicon) served as-is
+
+### Navigation
+
+The header has two layers, both fixed:
+- **Main navbar** (`z-50`, `h-[57px]`): title + Shelf/Puzzles page links. On non-home pages the section sub-bar is removed by `initHeader()`.
+- **Section sub-bar** (`z-40`, `top: 57px`): homepage-only horizontal bar with anchor links. `initScrollSpy()` uses `IntersectionObserver` to highlight the active section.
+
+The footer is `fixed bottom-0 z-50 h-11`. All pages add `pb-11` to `<main>` to avoid content overlap. The homepage adds `pt-[94px]` (navbar + sub-bar); sub-pages add `pt-[73px]` (navbar only).
 
 ### Color theming
 
-Accent colors are CSS custom properties (`--color-accent-0/1/2`) defined in `src/styles/main.css` under `@theme`. The color picker lets users select a palette from `src/scripts/color-palette.ts`, which updates these properties on `:root` and persists the choice in `localStorage`. After any accent change, a custom `accentChange` event is dispatched on `document.documentElement` — `index.ts` listens for this to refresh the tsparticles colors.
+All color tokens are CSS custom properties in `src/styles/main.css` under `@theme`. Light mode overrides live in `html.light { }`. The single accent is `--color-accent`.
+
+**Easter egg palette system**: Six accent palettes are defined as `html[data-accent="name"] { --color-accent: ...; }` rules in `main.css`. `src/scripts/color-picker.ts` sets `document.documentElement.dataset.accent` and saves to `localStorage` key `accentPalette`. `initTheme()` (in `theme.ts`) reapplies the saved palette on load. The trigger is a barely-visible palette icon in the footer.
+
+**Light/dark toggle**: `html.light` class on `<html>`, toggled by `theme.ts`. Saved to `localStorage` key `theme`. An inline `<script>` in each HTML `<head>` applies the class before CSS renders to prevent flash.
 
 ### Asset imports
 
-- Static asset URLs: use Vite's `?url` suffix (e.g., `import imgURL from "../../public/assets/vismay.png?url"`)
-- Raw HTML templates: use Vite's `?raw` suffix
+- Static asset URLs: Vite's `?url` suffix (e.g., `import imgURL from "../../public/assets/vismay.png?url"`)
+- Raw HTML templates: Vite's `?raw` suffix
+- Vite client types (`import.meta.env.BASE_URL`) are available via `/// <reference types="vite/client" />` in `src/declarations.d.ts`
 
 ### Tailwind v4
 
-Theme tokens are declared with `@theme` inside `src/styles/main.css` — **not** inside `tailwind.config.ts`. The config file is vestigial; add new design tokens in `main.css`.
+Theme tokens are declared with `@theme` inside `src/styles/main.css` — **not** in `tailwind.config.ts` (that file is vestigial). Add new design tokens in `main.css`.
 
 ### Deployment
 
-Set `GITHUB_PAGES=true` before building to switch the Vite `base` from `/` to `/portfolio/` for GitHub Pages hosting.
+Set `GITHUB_PAGES=true` before building to switch the Vite `base` from `/` to `/portfolio/`. Navigation hrefs in `header.ts` use `import.meta.env.BASE_URL` so page links work on both local dev and GitHub Pages.
