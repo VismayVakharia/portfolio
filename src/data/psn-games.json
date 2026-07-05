@@ -1,1 +1,74 @@
-[]
+[
+  {
+    "title": "The Crew® 2",
+    "platform": "PS4",
+    "coverUrl": "https://image.api.playstation.com/vulcan/img/rnd/202107/0716/JApkXBEJYN0ywmWREnI32EDI.jpg",
+    "playtimeHours": 22.6
+  },
+  {
+    "title": "Prime Video",
+    "platform": "PlayStation",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202211/1416/gj2EdFs0IUhvSbI0eGSjECZU.png",
+    "playtimeHours": 4.4
+  },
+  {
+    "title": "Assassin's Creed® Mirage",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/oV797PnyRvqIwIphOcod6XKo.jpg",
+    "playtimeHours": 0.3
+  },
+  {
+    "title": "Rocket League®",
+    "platform": "PS4",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202606/0221/1255169a2dbdcf1fc5d6e56952a0ae06428547b0dda1892a.jpg",
+    "playtimeHours": 0.2
+  },
+  {
+    "title": "Hogwarts Legacy",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/0044fd3a16b60713c426aef3585e673122f044179d1aea3d.png",
+    "playtimeHours": 17.5
+  },
+  {
+    "title": "Netflix",
+    "platform": "PlayStation",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202010/1422/hg3DR6yxbMtehWdsuCkR363e.png",
+    "playtimeHours": 19.2
+  },
+  {
+    "title": "Cyberpunk 2077",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202111/3013/2tW2zf7n8wwwWXZO9dAQMVu5.png",
+    "playtimeHours": 1.1
+  },
+  {
+    "title": "Overcooked! All You Can Eat",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/img/rnd/202109/2814/AOto35tIvKpWX2R16dP2HMKI.jpg",
+    "playtimeHours": 0.2
+  },
+  {
+    "title": "Need for Speed™ Hot Pursuit Remastered",
+    "platform": "PS4",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202209/2916/betFGdrYBphygatwBukgE9aB.png",
+    "playtimeHours": 2.1
+  },
+  {
+    "title": "Sniper Elite 5",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202202/2116/Yqyp4CzNBjtfzGSX08dsEjYF.png",
+    "playtimeHours": 2.1
+  },
+  {
+    "title": "Marvel's Spider-Man",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/pZ2pIEEnH7YhEtpxh1CY6KDz.png",
+    "playtimeHours": 14.2
+  },
+  {
+    "title": "Viewfinder",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202507/1711/14e1f208bc1779c1fda92499211db2c98432b4efa0999aa4.png",
+    "playtimeHours": 1.6
+  }
+]
