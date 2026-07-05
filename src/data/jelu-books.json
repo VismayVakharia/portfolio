@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "title": "Essentialism",
+    "author": "Greg McKeown",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780753550281-M.jpg"
+  },
+  {
+    "title": "The Theory Of Everything",
+    "author": "Stephen Hawking",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788179925911-M.jpg"
+  },
+  {
+    "title": "Serious Men",
+    "author": "Manu Joseph",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9789350291955-M.jpg"
+  },
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781847941831-M.jpg"
+  },
+  {
+    "title": "The Old Man and the Sea",
+    "author": "Ernest Hemingway",
+    "year": 2025,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780099908401-M.jpg"
+  },
+  {
+    "title": "The Guns of Navarone",
+    "author": "Alistair MacLean",
+    "year": 2025,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780008337292-M.jpg"
+  },
+  {
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9781408850251-M.jpg"
+  },
+  {
+    "title": "Who Will Cry When You Die?",
+    "author": "Robin Sharma",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788179922323-M.jpg"
+  },
+  {
+    "title": "The Myth of Sisyphus",
+    "author": "Albert Camus",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780141023991-M.jpg"
+  }
+]
