@@ -57,7 +57,7 @@ async function fetchSteam(): Promise<void> {
     return;
   }
 
-  const url = `https://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v1/?key=${apiKey}&steamid=${steamId}&count=12&format=json`;
+  const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${apiKey}&steamid=${steamId}&include_appinfo=true&format=json`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Steam API responded with ${res.status}`);
 
@@ -67,19 +67,23 @@ async function fetchSteam(): Promise<void> {
     };
   };
 
-  const games: VideoGame[] = (json.response.games ?? []).map((g) => ({
-    title: g.name,
-    platform: "PC",
-    coverUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
-    playtimeHours: Math.round((g.playtime_forever / 60) * 10) / 10,
-  }));
+  const games: VideoGame[] = (json.response.games ?? [])
+    .slice()
+    .sort((a, b) => b.playtime_forever - a.playtime_forever)
+    .slice(0, 12)
+    .map((g) => ({
+      title: g.name,
+      platform: "PC",
+      coverUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
+      playtimeHours: Math.round((g.playtime_forever / 60) * 10) / 10,
+    }));
 
   safeWrite(path.join(DATA_DIR, "steam-games.json"), games);
   console.log(`[steam] Wrote ${games.length} games`);
 }
 
 async function fetchPsn(): Promise<void> {
-  const npsso = process.env.PSN_NPSSO;
+  const npsso = process.env.PSN_NPSSO?.trim();
   if (!npsso) {
     console.warn("[psn] Missing PSN_NPSSO — skipping");
     return;
@@ -130,19 +134,20 @@ async function fetchJelu(): Promise<void> {
         isbn13?: string;
         isbn10?: string;
       };
-      personalRating?: number;
-      readingEvents: Array<{ eventType: string; endDate?: string }>;
+      userAvgRating?: number;
+      lastReadingEventDate?: string;
     }>;
   };
 
   const books: JeluBook[] = json.content.map((entry) => {
     const author = entry.book.authors.map((a) => a.name).join(", ");
 
-    const finishedEvent = entry.readingEvents.find((e) => e.eventType === "FINISHED");
-    const year = finishedEvent?.endDate ? new Date(finishedEvent.endDate).getFullYear() : new Date().getFullYear();
+    const year = entry.lastReadingEventDate
+      ? new Date(entry.lastReadingEventDate).getFullYear()
+      : new Date().getFullYear();
 
     const rating =
-      entry.personalRating != null ? Math.max(1, Math.min(5, Math.round(entry.personalRating / 2))) : undefined;
+      entry.userAvgRating != null ? Math.max(1, Math.min(5, Math.round(entry.userAvgRating / 2))) : undefined;
 
     const isbn = entry.book.isbn13 ?? entry.book.isbn10;
     const coverUrl = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : undefined;
