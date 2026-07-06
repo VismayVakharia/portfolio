@@ -1,82 +1,162 @@
 [
   {
     "title": "Pandemic",
-    "status": "both"
+    "status": "both",
+    "imageUrl": "https://cf.geekdo-images.com/S3ybV1LAp-8SnHIXLLjVqA__itemrep/img/wAMLbgihOl7dJDHnvqt7OXKEV-4=/fit-in/246x300/filters:strip_icc()/pic1534148.jpg",
+    "players": "2-4",
+    "genre": "Cooperative",
+    "bggUrl": "https://boardgamegeek.com/boardgame/30549/pandemic"
   },
   {
     "title": "Pandemic: On the Brink",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/MOsfIJrEqkGMUlo09TL3rw__itemrep/img/ZtVyDma9hoE7_x_jDU39oo5lQ6Q=/fit-in/246x300/filters:strip_icc()/pic7014070.jpg",
+    "players": "2-5",
+    "genre": "Cooperative",
+    "bggUrl": "https://boardgamegeek.com/boardgame/40849/pandemic-on-the-brink"
   },
   {
     "title": "Codenames",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/nC6ifPCDnAItwoKSKXVrnw__itemrep/img/iM9m6bb1zTCzDzkXhiKE5V1gomc=/fit-in/246x300/filters:strip_icc()/pic8907965.jpg",
+    "players": "2-8",
+    "genre": "Party Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/178900/codenames"
   },
   {
     "title": "Forbidden Desert",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/OU26qQZoHJodxSFKiR5IzA__itemrep/img/dtguSaNPQjrAA3fbRJ_S5o8czAU=/fit-in/246x300/filters:strip_icc()/pic1528722.jpg",
+    "players": "2-5",
+    "genre": "Cooperative",
+    "bggUrl": "https://boardgamegeek.com/boardgame/136063/forbidden-desert"
   },
   {
     "title": "UNO Flip",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/8IO6sl0jN5IylDDRAOK8GQ__itemrep/img/blhBELUdzXGufapZZrlYzHDyTh8=/fit-in/246x300/filters:strip_icc()/pic8214042.jpg",
+    "players": "2-10",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/271460/uno-flip"
   },
   {
     "title": "Tiny Towns",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/aE1EoOzr530gQin8bj8QDA__itemrep/img/GjMIudOJ68knCPVBze1ojLD72Sw=/fit-in/246x300/filters:strip_icc()/pic4460401.jpg",
+    "players": "1-6",
+    "genre": "Puzzle",
+    "bggUrl": "https://boardgamegeek.com/boardgame/265736/tiny-towns"
   },
   {
     "title": "Sequence",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/VosGBqkOjkhgC2QFS1o3_g__itemrep/img/mIw3ZMq4f_QbAgBsy9NOma2-AX8=/fit-in/246x300/filters:strip_icc()/pic212893.jpg",
+    "players": "2-12",
+    "genre": "Abstract Strategy",
+    "bggUrl": "https://boardgamegeek.com/boardgame/2375/sequence"
   },
   {
     "title": "Harmonies",
-    "status": "both"
+    "status": "both",
+    "imageUrl": "https://cf.geekdo-images.com/A_XP2_VN3ugyqPhezowB_w__itemrep/img/wGng6fVAYRI5NKBX6x-pksZKJGI=/fit-in/246x300/filters:strip_icc()/pic8026369.png",
+    "players": "1-4",
+    "genre": "Abstract Strategy",
+    "bggUrl": "https://boardgamegeek.com/boardgame/414317/harmonies"
   },
   {
     "title": "Point Salad",
-    "status": "both"
+    "status": "both",
+    "imageUrl": "https://cf.geekdo-images.com/Xy0W9NtEpX0EVjwgxO3IEA__itemrep/img/_4tw4SHEg019t8839DKMAh6gs5M=/fit-in/246x300/filters:strip_icc()/pic4621571.png",
+    "players": "2-6",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/274960/point-salad"
   },
   {
     "title": "Ravine",
-    "status": "offline"
+    "status": "offline",
+    "imageUrl": "https://cf.geekdo-images.com/Q6XqoN1fL14mifgOvIXarQ__itemrep/img/g9L_F0pGwX_g7fG8iq9TePyVAaY=/fit-in/246x300/filters:strip_icc()/pic9454370.png",
+    "players": "3-6",
+    "genre": "Cooperative",
+    "bggUrl": "https://boardgamegeek.com/boardgame/237728/ravine"
   },
   {
     "title": "River Valley Glassworks",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/Rb2Hw7IDaF7evNMjrqMmXA__itemrep/img/p7hKICed9ZLpVCGryuIreF4-qS4=/fit-in/246x300/filters:strip_icc()/pic7886346.jpg",
+    "players": "1-5",
+    "genre": "Puzzle",
+    "bggUrl": "https://boardgamegeek.com/boardgame/407297/river-valley-glassworks"
   },
   {
     "title": "6 Nimmt!",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/WuOY1XAIJQ-RGAmT_apW_w__itemrep/img/6Ed-INTd8Hitxi6gOJugeSBFHQE=/fit-in/246x300/filters:strip_icc()/pic8632998.jpg",
+    "players": "2-10",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/432/take-5"
   },
   {
     "title": "Collect",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/4BOrkLzSy1Oquo3VwaToiA__itemrep/img/5_XJ6nL7TN7QRlNOsfMSl-IpzIE=/fit-in/246x300/filters:strip_icc()/pic9091458.png",
+    "players": "2-5",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/453893/collect"
   },
   {
     "title": "Solstis",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/T6i991w8_ccgP5s2ObEIpw__itemrep/img/65R3Dtwi-isCt7cEo3pQdzLji44=/fit-in/246x300/filters:strip_icc()/pic8548331.png",
+    "players": "1-2",
+    "genre": "Abstract Strategy",
+    "bggUrl": "https://boardgamegeek.com/boardgame/411255/solstis"
   },
   {
     "title": "Welcome To...",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/g4XmxyKhNVdhC3QPd1purQ__itemrep/img/QKJwfdV3Qrv9w2TX_ML5T3z5G9E=/fit-in/246x300/filters:strip_icc()/pic3761012.jpg",
+    "players": "1-100",
+    "genre": "Flip-and-Write",
+    "bggUrl": "https://boardgamegeek.com/boardgame/233867/welcome-to"
   },
   {
-    "title": "Sea, Salt & Paper",
-    "status": "online"
+    "title": "Sea Salt & Paper",
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/CIh_rXKoRw9z8K0PJxT8nQ__itemrep/img/GnrjU-bLmrdUTF_H31vBMTd-uxA=/fit-in/246x300/filters:strip_icc()/pic6973911.jpg",
+    "players": "2-4",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/367220/sea-salt-and-paper"
   },
   {
-    "title": "Ticker to Ride: Europe",
-    "status": "online"
+    "title": "Ticket to Ride: Europe",
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/EQJZDO1Jq8KL-HxmWLwL-Q__itemrep/img/h7OOSrsNnMRZPpIk3H6uJWA9tHI=/fit-in/246x300/filters:strip_icc()/pic9580918.jpg",
+    "players": "2-5",
+    "genre": "Strategy",
+    "bggUrl": "https://boardgamegeek.com/boardgame/14996/ticket-to-ride-europe"
   },
   {
     "title": "Cardia",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/e-Xx7mz_tgisEx2Aq4Wa6w__itemrep/img/xMFx0fgyPAk_-84t084sNKNFcZY=/fit-in/246x300/filters:strip_icc()/pic8910865.png",
+    "players": "2",
+    "genre": "Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/447243/duel-for-cardia"
   },
   {
     "title": "Just One",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/74haNunMBn85beBi-yIKwA__itemrep/img/JJ6JxH8LXK_y5YFwBxMq4UCGNfw=/fit-in/246x300/filters:strip_icc()/pic8669313.png",
+    "players": "3-7",
+    "genre": "Party Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/254640/just-one"
   },
   {
     "title": "Verdant",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/c1XGn5ryzbqgMOHzObZpQw__itemrep/img/4V6iTxz_WDK0EZCA4QSe2qQoTuU=/fit-in/246x300/filters:strip_icc()/pic6094080.png",
+    "players": "1-5",
+    "genre": "Puzzle",
+    "bggUrl": "https://boardgamegeek.com/boardgame/334065/verdant"
   }
 ]
