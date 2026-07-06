@@ -48,7 +48,6 @@
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^22.14.1",
     "psn-api": "^2.18.0",
-    "tailwindcss": "^4.1.4",
-    "tsparticles": "^3.8.1"
+    "tailwindcss": "^4.1.4"
   }
 }

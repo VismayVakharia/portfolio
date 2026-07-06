@@ -21,34 +21,40 @@ This is a **vanilla TypeScript + Vite** MPA (multi-page app) with no JS framewor
 
 ### Pages
 
-| Entry HTML | Entry TS | URL |
-|---|---|---|
-| `src/index.html` | `src/index.ts` | `/` — professional portfolio |
-| `src/shelf/index.html` | `src/shelf/shelf.ts` | `/shelf/` — books, video games, board games |
-| `src/puzzles/index.html` | `src/puzzles/puzzles.ts` | `/puzzles/` — puzzle collection |
+| Entry HTML               | Entry TS                 | URL                                         |
+| ------------------------ | ------------------------ | ------------------------------------------- |
+| `src/index.html`         | `src/index.ts`           | `/` — professional portfolio                |
+| `src/shelf/index.html`   | `src/shelf/shelf.ts`     | `/shelf/` — books, video games, board games |
+| `src/puzzles/index.html` | `src/puzzles/puzzles.ts` | `/puzzles/` — puzzle collection             |
 
 All three are registered in `vite.config.ts` under `rollupOptions.input`. Vite `root` is `src/`, so script `src` attributes in HTML use paths like `/index.ts`, `/shelf/shelf.ts`.
 
 ### Rendering pattern
 
 Each page's entry TS file calls shared `init*()` functions on `DOMContentLoaded`. Each init function:
+
 1. Imports its HTML template via Vite's `?raw` suffix (e.g., `import aboutHTML from "../components/about.html?raw"`)
 2. Injects it into the DOM via `innerHTML`
 3. Queries the injected elements and wires up event listeners or populates dynamic data
 
-Every page calls `initTheme()` first (applies saved theme/palette), then `initHeader()`, section inits, `initFooter()`. The homepage also calls `initScrollSpy()` last (after all sections are rendered).
+Every page calls `initTheme()` first (applies saved theme/palette), then `initFavicon()` (sets the `<link id="favicon">` href to `src/dark-favicon.png` via `?url`), then `initHeader()`, section inits, `initFooter()`. The homepage also calls `initScrollSpy()` last (after all sections are rendered).
 
 ### Key directories
 
-- `src/components/` — HTML templates; components with both HTML and TS logic live in subdirectories (`header/`, `footer/`, `color-picker/`, `project-card/`)
-- `src/scripts/` — Section init functions (`about.ts`, `skills.ts`, etc.) and shared utilities (`theme.ts`, `color-picker.ts`)
+- `src/components/` — HTML templates; flat files (`about.html`, `board-game-row.html`, `book-row.html`, `education-experience.html`, `game-card.html`, `projects.html`, `publication-card.html`, `publications.html`, `puzzle-card.html`) plus subdirectories for components that pair HTML with TS logic (`header/`, `footer/`, `project-card/`)
+- `src/scripts/` — Section init functions (`about.ts`, `books.ts`, `board-games.ts`, `video-games.ts`, `puzzles.ts`, `skills.ts`, `education-experience.ts`, `projects.ts`, `publications.ts`, `contact.ts`) and shared utilities (`theme.ts`, `color-picker.ts`)
 - `src/data/` — JSON files driving dynamic content: `projects.json`, `publications.json`, `skills.json`, `puzzles.json`, plus the shelf's manual (`books.json`, `board-games.json`) and auto-refreshed (`jelu-books.json`, `steam-games.json`, `psn-games.json`) files — see "Hobby data pipeline" below
 - `public/assets/` — Static assets (images, PDFs, favicon) served as-is
+
+The shelf page's video games section is driven by `video-games.ts`/`initVideoGames()`, which merges `steam-games.json` and `psn-games.json`, normalizes titles (stripping `®`/`™`) to dedupe cross-platform ownership (e.g. a game owned on both PC and PS4 becomes one entry), sums playtime across platforms for sort order, and renders colored platform tags (`--color-platform-pc`/`--color-platform-playstation` tokens in `main.css`) plus genre chips.
+
+The puzzles page's `puzzles.ts` groups entries by a `category` field; each entry in `puzzles.json` supports optional `type`/`brand`/`imageUrl`/`notes` fields, rendered via `puzzle-card.html`.
 
 ### Navigation
 
 The header has two layers, both fixed:
-- **Main navbar** (`z-50`, `h-[57px]`): title + Shelf/Puzzles page links. On non-home pages the section sub-bar is removed by `initHeader()`.
+
+- **Main navbar** (`z-50`, `h-[57px]`): title + Shelf/Puzzles page links, plus a mobile hamburger menu (`#mobile-menu-button`/`#mobile-menu`/`#menu-overlay` in `header.ts`, closes on outside click). On non-home pages the section sub-bar is removed by `initHeader()`.
 - **Section sub-bar** (`z-40`, `top: 57px`): homepage-only horizontal bar with anchor links. `initScrollSpy()` uses `IntersectionObserver` to highlight the active section.
 
 The footer is `fixed bottom-0 z-50 h-11`. All pages add `pb-11` to `<main>` to avoid content overlap. The homepage adds `pt-[94px]` (navbar + sub-bar); sub-pages add `pt-[73px]` (navbar only).
@@ -69,7 +75,7 @@ All color tokens are CSS custom properties in `src/styles/main.css` under `@them
 
 ### Tailwind v4
 
-Theme tokens are declared with `@theme` inside `src/styles/main.css` — **not** in `tailwind.config.ts` (that file is vestigial). Add new design tokens in `main.css`.
+Theme tokens are declared with `@theme` inside `src/styles/main.css`. There is no `tailwind.config.ts` — Tailwind v4's `@theme` directive replaces the old JS config entirely. Add new design tokens in `main.css`.
 
 ### Hobby data pipeline
 
@@ -84,4 +90,6 @@ The shelf page (`/shelf/`) mixes manually-curated and auto-refreshed data:
 
 ### Deployment
 
-Set `GITHUB_PAGES=true` before building to switch the Vite `base` from `/` to `/portfolio/`. Navigation hrefs in `header.ts` use `import.meta.env.BASE_URL` so page links work on both local dev and GitHub Pages.
+Production is **Cloudflare Pages**, connected directly to this GitHub repo — it auto-deploys on every push to `main` (build command `npm run build`, output directory `dist/`), serving `vismayvakharia.com` at the root path.
+
+Separately, setting `GITHUB_PAGES=true` before building switches the Vite `base` from `/` to `/portfolio/` — an alternate toggle for hosting on GitHub Pages instead, not used by the Cloudflare deploy. Navigation hrefs in `header.ts` use `import.meta.env.BASE_URL` so page links still work under either base path.
