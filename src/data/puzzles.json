@@ -1,18 +1,87 @@
 [
+  { "name": "2x2", "category": "Cubic", "type": "2x2" },
   {
-    "name": "Rubik's Cube 3×3",
-    "type": "3×3",
+    "name": "3x3",
+    "category": "Cubic",
+    "type": "3x3",
     "brand": "GAN 356 RS",
-    "solved": true,
-    "bestTime": "sub-30s",
-    "notes": "The classic."
+    "notes": "The one that started it. Still the puzzle I reach for when I want to think about something else."
+  },
+  { "name": "4x4", "category": "Cubic", "type": "4x4" },
+  { "name": "5x5", "category": "Cubic", "type": "5x5" },
+  { "name": "6x6", "category": "Cubic", "type": "6x6" },
+  {
+    "name": "1x3x3",
+    "category": "Cuboid",
+    "type": "Floppy Cube",
+    "notes": "Folds flat instead of twisting — more fidget toy than puzzle some days."
+  },
+  { "name": "Pyraminx", "category": "Pyraminx Family", "type": "Pyraminx", "brand": "QiYi" },
+  { "name": "Megaminx", "category": "Dodecahedral", "type": "Megaminx" },
+  {
+    "name": "Square-1",
+    "category": "Shape Mods",
+    "type": "Square-1",
+    "notes": "Reshapes into all kinds of parallelograms mid-solve — barely looks like a cube half the time."
+  },
+  { "name": "Skewb", "category": "Skewb Family", "type": "Skewb" },
+  {
+    "name": "Polaris Cube",
+    "category": "Skewb Family",
+    "type": "Polaris",
+    "notes": "A Skewb that also turns vertically and horizontally once twisted partway open."
+  },
+  { "name": "Six Spot Cube", "category": "Skewb Family", "type": "Six Spot" },
+  {
+    "name": "Mirror Cube",
+    "category": "Shape Mods",
+    "type": "Mirror Cube",
+    "notes": "Same cuts as a 3x3, but every piece is a different size — solved by shape, not color."
   },
   {
-    "name": "Pyraminx",
-    "type": "Pyraminx",
-    "brand": "QiYi",
-    "solved": true,
-    "bestTime": "",
-    "notes": ""
+    "name": "Ghost Cube",
+    "category": "Shape Mods",
+    "type": "Ghost Cube",
+    "notes": "Sheared into odd angles — looks scrambled even when it's solved."
+  },
+  {
+    "name": "Master Morphix",
+    "category": "Shape Mods",
+    "type": "Master Morphix",
+    "notes": "A 3x3 mechanism hiding inside a shape-shifting tetrahedron."
+  },
+  {
+    "name": "Duomo Cube",
+    "category": "Shape Mods",
+    "type": "Duomo Cube",
+    "notes": "A mashup of Pyraminx and Master Morphix — the color scramble looks worse than it is."
+  },
+  {
+    "name": "Puppet Cube",
+    "category": "Shape Mods",
+    "type": "Puppet Cube",
+    "notes": "A 3x3 hidden inside a 2x2 shell. Deceptively hard to read."
+  },
+  { "name": "Axis Cube", "category": "Shape Mods", "type": "Axis Cube" },
+  { "name": "Fisher Cube", "category": "Shape Mods", "type": "Fisher Cube" },
+  { "name": "Windmill Cube", "category": "Shape Mods", "type": "Windmill Cube" },
+  { "name": "Pentacle Cube", "category": "Shape Mods", "type": "Pentacle Cube" },
+  {
+    "name": "Gear Cube",
+    "category": "Gear Puzzles",
+    "type": "Gear 3x3",
+    "notes": "Interlocking gears mean one turn moves more than one layer at once."
+  },
+  {
+    "name": "Curvy Copter",
+    "category": "Jumbling",
+    "type": "Curvy Copter",
+    "notes": "Edge-turning with curved cuts that let it fold into non-cube shapes mid-solve."
+  },
+  {
+    "name": "Infinity Cube",
+    "category": "Other",
+    "type": "Infinity Cube",
+    "notes": "Less a twisty puzzle, more an endless-folding fidget toy — still earns a shelf spot."
   }
 ]

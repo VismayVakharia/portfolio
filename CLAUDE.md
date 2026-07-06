@@ -24,7 +24,7 @@ This is a **vanilla TypeScript + Vite** MPA (multi-page app) with no JS framewor
 | Entry HTML | Entry TS | URL |
 |---|---|---|
 | `src/index.html` | `src/index.ts` | `/` — professional portfolio |
-| `src/shelf/index.html` | `src/shelf/shelf.ts` | `/shelf/` — books + games |
+| `src/shelf/index.html` | `src/shelf/shelf.ts` | `/shelf/` — books, video games, board games |
 | `src/puzzles/index.html` | `src/puzzles/puzzles.ts` | `/puzzles/` — puzzle collection |
 
 All three are registered in `vite.config.ts` under `rollupOptions.input`. Vite `root` is `src/`, so script `src` attributes in HTML use paths like `/index.ts`, `/shelf/shelf.ts`.
@@ -42,7 +42,7 @@ Every page calls `initTheme()` first (applies saved theme/palette), then `initHe
 
 - `src/components/` — HTML templates; components with both HTML and TS logic live in subdirectories (`header/`, `footer/`, `color-picker/`, `project-card/`)
 - `src/scripts/` — Section init functions (`about.ts`, `skills.ts`, etc.) and shared utilities (`theme.ts`, `color-picker.ts`)
-- `src/data/` — JSON files driving dynamic content: `projects.json`, `publications.json`, `skills.json`, `books.json`, `games.json`, `puzzles.json`
+- `src/data/` — JSON files driving dynamic content: `projects.json`, `publications.json`, `skills.json`, `puzzles.json`, plus the shelf's manual (`books.json`, `board-games.json`) and auto-refreshed (`jelu-books.json`, `steam-games.json`, `psn-games.json`) files — see "Hobby data pipeline" below
 - `public/assets/` — Static assets (images, PDFs, favicon) served as-is
 
 ### Navigation
@@ -70,6 +70,17 @@ All color tokens are CSS custom properties in `src/styles/main.css` under `@them
 ### Tailwind v4
 
 Theme tokens are declared with `@theme` inside `src/styles/main.css` — **not** in `tailwind.config.ts` (that file is vestigial). Add new design tokens in `main.css`.
+
+### Hobby data pipeline
+
+The shelf page (`/shelf/`) mixes manually-curated and auto-refreshed data:
+
+- **Manual** (hand-edited, never overwritten by automation): `src/data/books.json`, `src/data/board-games.json`
+- **Auto-refreshed**: `src/data/jelu-books.json`, `src/data/steam-games.json`, `src/data/psn-games.json`
+
+`scripts/fetch-all.ts` (run via `npm run fetch-data`) pulls from the Steam Web API, the `psn-api` package, and a self-hosted Jelu instance, and writes the three auto-refreshed files. `.github/workflows/refresh-hobby-data.yml` runs it daily (plus manual `workflow_dispatch`) and commits any changes to those three files via the GitHub Contents API (not a git push). A failing source leaves its existing JSON file untouched rather than erroring out. Books and board games are merged/grouped client-side in `src/scripts/books.ts`/`board-games.ts` by a `status` field (`reading`/`finished`/`tbr` for books, `offline`/`online`/`both`/`wishlist` for board games — `both` fans into both the "Played" and "Played Online" groups).
+
+`board-games.json` entries only need `title`/`status` filled in by hand — the rest (`imageUrl`/`players`/`genre`/`bggUrl`) gets looked up on request rather than fetched by a script: BoardGameGeek's XML API now requires a registered app + auth token for all requests (not just cloud IPs), so there's no unauthenticated automation path.
 
 ### Deployment
 

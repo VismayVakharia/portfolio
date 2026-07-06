@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "title": "Pandemic",
+    "status": "both"
+  },
+  {
+    "title": "Pandemic: On the Brink",
+    "status": "offline"
+  },
+  {
+    "title": "Codenames",
+    "status": "offline"
+  },
+  {
+    "title": "Forbidden Desert",
+    "status": "offline"
+  },
+  {
+    "title": "UNO Flip",
+    "status": "offline"
+  },
+  {
+    "title": "Tiny Towns",
+    "status": "offline"
+  },
+  {
+    "title": "Sequence",
+    "status": "offline"
+  },
+  {
+    "title": "Harmonies",
+    "status": "both"
+  },
+  {
+    "title": "Point Salad",
+    "status": "both"
+  },
+  {
+    "title": "Ravine",
+    "status": "offline"
+  },
+  {
+    "title": "River Valley Glassworks",
+    "status": "online"
+  },
+  {
+    "title": "6 Nimmt!",
+    "status": "online"
+  },
+  {
+    "title": "Collect",
+    "status": "online"
+  },
+  {
+    "title": "Solstis",
+    "status": "online"
+  },
+  {
+    "title": "Welcome To...",
+    "status": "online"
+  },
+  {
+    "title": "Sea, Salt & Paper",
+    "status": "online"
+  },
+  {
+    "title": "Ticker to Ride: Europe",
+    "status": "online"
+  },
+  {
+    "title": "Cardia",
+    "status": "online"
+  },
+  {
+    "title": "Just One",
+    "status": "online"
+  },
+  {
+    "title": "Verdant",
+    "status": "online"
+  }
+]

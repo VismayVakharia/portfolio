@@ -29,12 +29,16 @@ type VideoGame = {
   platform: string;
   coverUrl: string;
   playtimeHours: number;
+  genres?: string[];
 };
+
+type BookStatus = "reading" | "finished" | "tbr";
 
 type JeluBook = {
   title: string;
   author: string;
-  year: number;
+  status: BookStatus;
+  year?: number;
   rating?: number;
   coverUrl?: string;
 };
@@ -43,10 +47,31 @@ function safeWrite(filePath: string, data: unknown): void {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + "\n");
 }
 
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function parseDurationToHours(duration: string): number {
   const m = duration.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
   if (!m) return 0;
   return Math.round((parseInt(m[1] ?? "0") + parseInt(m[2] ?? "0") / 60 + parseInt(m[3] ?? "0") / 3600) * 10) / 10;
+}
+
+// Steam's Store API is unofficial/undocumented and can rate-limit bursts of requests.
+async function fetchSteamGenres(appid: number): Promise<string[]> {
+  try {
+    const res = await fetch(`https://store.steampowered.com/api/appdetails?appids=${appid}&filters=genres&cc=us`);
+    if (!res.ok) return [];
+    const json = (await res.json()) as Record<
+      string,
+      { success: boolean; data?: { genres?: Array<{ description: string }> } }
+    >;
+    const entry = json[String(appid)];
+    if (!entry?.success) return [];
+    return (entry.data?.genres ?? []).map((g) => g.description);
+  } catch {
+    return [];
+  }
 }
 
 async function fetchSteam(): Promise<void> {
@@ -67,20 +92,42 @@ async function fetchSteam(): Promise<void> {
     };
   };
 
-  const games: VideoGame[] = (json.response.games ?? [])
+  const top12 = (json.response.games ?? [])
     .slice()
     .sort((a, b) => b.playtime_forever - a.playtime_forever)
-    .slice(0, 12)
-    .map((g) => ({
+    .slice(0, 12);
+
+  const games: VideoGame[] = [];
+  for (const g of top12) {
+    const genres = await fetchSteamGenres(g.appid);
+    games.push({
       title: g.name,
       platform: "PC",
       coverUrl: `https://cdn.akamai.steamstatic.com/steam/apps/${g.appid}/header.jpg`,
       playtimeHours: Math.round((g.playtime_forever / 60) * 10) / 10,
-    }));
+      genres,
+    });
+    await delay(300);
+  }
 
   safeWrite(path.join(DATA_DIR, "steam-games.json"), games);
   console.log(`[steam] Wrote ${games.length} games`);
 }
+
+// PSN's played-games API surfaces non-game apps (Prime Video, Netflix, Spotify, etc.) as "titles"
+// with session time. The `categories` filter excludes the "unknown" bucket those land in server-side;
+// the name denylist is a defensive second layer in case a non-game slips through some other category.
+const PSN_NON_GAME_DENYLIST = [
+  "netflix",
+  "spotify",
+  "youtube",
+  "prime video",
+  "disney+",
+  "hulu",
+  "twitch",
+  "hbo max",
+  "crunchyroll",
+];
 
 async function fetchPsn(): Promise<void> {
   const npsso = process.env.PSN_NPSSO?.trim();
@@ -91,25 +138,43 @@ async function fetchPsn(): Promise<void> {
 
   const accessCode = await exchangeNpssoForAccessCode(npsso);
   const auth = await exchangeAccessCodeForAuthTokens(accessCode);
-  const { titles } = await getUserPlayedGames(auth, "me", { limit: 12 });
-
-  const games: VideoGame[] = titles.map((g) => {
-    const coverImg = g.concept.media.images.find(
-      (img) => img.type === "GAMEHUB_COVER_ART" || img.type === "FOUR_BY_THREE_BANNER"
-    );
-    const coverUrl = coverImg?.url ?? g.localizedImageUrl;
-    const platform = g.category === "ps5_native_game" ? "PS5" : g.category === "ps4_game" ? "PS4" : "PlayStation";
-
-    return {
-      title: g.name,
-      platform,
-      coverUrl,
-      playtimeHours: parseDurationToHours(g.playDuration),
-    };
+  const { titles } = await getUserPlayedGames(auth, "me", {
+    limit: 24,
+    categories: "ps4_game,ps5_native_game,pspc_game",
   });
+
+  const games: VideoGame[] = titles
+    .filter((g) => !PSN_NON_GAME_DENYLIST.some((d) => g.name.toLowerCase().includes(d)))
+    .slice(0, 12)
+    .map((g) => {
+      const coverImg = g.concept.media.images.find(
+        (img) => img.type === "GAMEHUB_COVER_ART" || img.type === "FOUR_BY_THREE_BANNER"
+      );
+      const coverUrl = coverImg?.url ?? g.localizedImageUrl;
+      const platform = g.category === "ps5_native_game" ? "PS5" : g.category === "ps4_game" ? "PS4" : "PlayStation";
+
+      return {
+        title: g.name,
+        platform,
+        coverUrl,
+        playtimeHours: parseDurationToHours(g.playDuration),
+      };
+    });
 
   safeWrite(path.join(DATA_DIR, "psn-games.json"), games);
   console.log(`[psn] Wrote ${games.length} games`);
+}
+
+// Jelu's /userbooks response includes each entry's own status (verified against the bayang/jelu
+// source: UserBookWithoutEventsAndUserDto has `lastReadingEvent` + `toRead` fields), so a single
+// unfiltered fetch plus client-side classification is simpler and more robust than filtering
+// server-side by `lastEventTypes` (the actual query param — the previous `readingEventType` param
+// this code used doesn't exist on the endpoint and was silently ignored by Jelu).
+function mapJeluStatus(entry: { lastReadingEvent?: string | null; toRead?: boolean | null }): BookStatus | null {
+  if (entry.lastReadingEvent === "CURRENTLY_READING") return "reading";
+  if (entry.lastReadingEvent === "FINISHED") return "finished";
+  if (entry.toRead) return "tbr";
+  return null; // DROPPED, or no event and not on the to-read list — not shown on the shelf
 }
 
 async function fetchJelu(): Promise<void> {
@@ -120,7 +185,7 @@ async function fetchJelu(): Promise<void> {
     return;
   }
 
-  const url = `${jeluUrl}/api/v1/userbooks?page=0&pageSize=50&readingEventType=FINISHED`;
+  const url = `${jeluUrl}/api/v1/userbooks?page=0&size=200&sort=modificationDate,desc`;
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${jeluToken}` },
   });
@@ -136,23 +201,31 @@ async function fetchJelu(): Promise<void> {
       };
       userAvgRating?: number;
       lastReadingEventDate?: string;
+      lastReadingEvent?: string;
+      toRead?: boolean;
     }>;
   };
 
-  const books: JeluBook[] = json.content.map((entry) => {
+  const books: JeluBook[] = json.content.flatMap((entry) => {
+    const status = mapJeluStatus(entry);
+    if (!status) return [];
+
     const author = entry.book.authors.map((a) => a.name).join(", ");
 
-    const year = entry.lastReadingEventDate
-      ? new Date(entry.lastReadingEventDate).getFullYear()
-      : new Date().getFullYear();
+    const year =
+      status === "finished" && entry.lastReadingEventDate
+        ? new Date(entry.lastReadingEventDate).getFullYear()
+        : undefined;
 
     const rating =
-      entry.userAvgRating != null ? Math.max(1, Math.min(5, Math.round(entry.userAvgRating / 2))) : undefined;
+      status === "finished" && entry.userAvgRating != null
+        ? Math.max(1, Math.min(5, Math.round(entry.userAvgRating / 2)))
+        : undefined;
 
     const isbn = entry.book.isbn13 ?? entry.book.isbn10;
     const coverUrl = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : undefined;
 
-    return { title: entry.book.title, author, year, rating, coverUrl };
+    return [{ title: entry.book.title, author, status, year, rating, coverUrl }];
   });
 
   safeWrite(path.join(DATA_DIR, "jelu-books.json"), books);
