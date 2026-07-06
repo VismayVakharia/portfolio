@@ -170,11 +170,33 @@ async function fetchPsn(): Promise<void> {
 // unfiltered fetch plus client-side classification is simpler and more robust than filtering
 // server-side by `lastEventTypes` (the actual query param — the previous `readingEventType` param
 // this code used doesn't exist on the endpoint and was silently ignored by Jelu).
-function mapJeluStatus(entry: { lastReadingEvent?: string | null; toRead?: boolean | null }): BookStatus | null {
+function mapJeluStatus(entry: {
+  lastReadingEvent?: string | null;
+  lastReadingEventDate?: string | null;
+  userAvgRating?: number | null;
+  toRead?: boolean | null;
+}): BookStatus | null {
   if (entry.lastReadingEvent === "CURRENTLY_READING") return "reading";
   if (entry.lastReadingEvent === "FINISHED") return "finished";
+  // Some books have a reading date or rating recorded without a recognized event type
+  // (e.g. imported without event history) — treat those as finished too, rather than
+  // silently dropping books the user has actually read.
+  if (entry.lastReadingEventDate || entry.userAvgRating != null) return "finished";
   if (entry.toRead) return "tbr";
-  return null; // DROPPED, or no event and not on the to-read list — not shown on the shelf
+  return null; // DROPPED — no event, no date/rating, and not on the to-read list
+}
+
+async function fetchOpenLibraryCover(title: string, author: string): Promise<string | undefined> {
+  try {
+    const params = new URLSearchParams({ title, author, limit: "1" });
+    const res = await fetch(`https://openlibrary.org/search.json?${params}`);
+    if (!res.ok) return undefined;
+    const json = (await res.json()) as { docs?: Array<{ cover_i?: number }> };
+    const coverId = json.docs?.[0]?.cover_i;
+    return coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 async function fetchJelu(): Promise<void> {
@@ -206,10 +228,14 @@ async function fetchJelu(): Promise<void> {
     }>;
   };
 
-  const books: JeluBook[] = json.content.flatMap((entry) => {
+  const classified = json.content.flatMap((entry) => {
     const status = mapJeluStatus(entry);
     if (!status) return [];
+    return [{ entry, status }];
+  });
 
+  const books: JeluBook[] = [];
+  for (const { entry, status } of classified) {
     const author = entry.book.authors.map((a) => a.name).join(", ");
 
     const year =
@@ -223,10 +249,13 @@ async function fetchJelu(): Promise<void> {
         : undefined;
 
     const isbn = entry.book.isbn13 ?? entry.book.isbn10;
-    const coverUrl = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg` : undefined;
+    const coverUrl = isbn
+      ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+      : await fetchOpenLibraryCover(entry.book.title, author);
 
-    return [{ title: entry.book.title, author, status, year, rating, coverUrl }];
-  });
+    books.push({ title: entry.book.title, author, status, year, rating, coverUrl });
+    if (!isbn) await delay(300);
+  }
 
   safeWrite(path.join(DATA_DIR, "jelu-books.json"), books);
   console.log(`[jelu] Wrote ${books.length} books`);
