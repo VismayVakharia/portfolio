@@ -10,6 +10,9 @@
   --color-foreground-muted: #666666;
   --color-accent: #5b9ca3;
   --color-border: #2a2a2a;
+
+  --color-platform-pc: #66c0f4;
+  --color-platform-playstation: #4f7fd6;
 }
 
 html.light {
@@ -19,6 +22,9 @@ html.light {
   --color-foreground-muted: #5a5a5a;
   --color-accent: #3d7a82;
   --color-border: #cdd8d8;
+
+  --color-platform-pc: #1f6d9c;
+  --color-platform-playstation: #2c4faa;
 }
 
 /* Easter egg colour palettes — applied via html[data-accent="name"] */
