@@ -6,12 +6,6 @@
     "playtimeHours": 22.6
   },
   {
-    "title": "Prime Video",
-    "platform": "PlayStation",
-    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202211/1416/gj2EdFs0IUhvSbI0eGSjECZU.png",
-    "playtimeHours": 4.4
-  },
-  {
     "title": "Assassin's Creed® Mirage",
     "platform": "PS5",
     "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202208/1718/oV797PnyRvqIwIphOcod6XKo.jpg",
@@ -28,12 +22,6 @@
     "platform": "PS5",
     "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/0044fd3a16b60713c426aef3585e673122f044179d1aea3d.png",
     "playtimeHours": 17.5
-  },
-  {
-    "title": "Netflix",
-    "platform": "PlayStation",
-    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202010/1422/hg3DR6yxbMtehWdsuCkR363e.png",
-    "playtimeHours": 19.2
   },
   {
     "title": "Cyberpunk 2077",
@@ -70,5 +58,17 @@
     "platform": "PS5",
     "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202507/1711/14e1f208bc1779c1fda92499211db2c98432b4efa0999aa4.png",
     "playtimeHours": 1.6
+  },
+  {
+    "title": "Trine 4: The Nightmare Prince",
+    "platform": "PS4",
+    "coverUrl": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA09869_00/3/i_e85f85f323e2f23bd2eef6f34eac9aa4c41cd1963c86bf96a28d802690da3f34/i/pic0.png",
+    "playtimeHours": 5.4
+  },
+  {
+    "title": "Marvel’s Spider-Man: Miles Morales",
+    "platform": "PS5",
+    "coverUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202008/1020/b0OfuUs4lHGWG4VNlHcXwL5a.jpg",
+    "playtimeHours": 36.7
   }
 ]
