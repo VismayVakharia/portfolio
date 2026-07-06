@@ -73,11 +73,6 @@ function createPuzzleCard(puzzle: Puzzle): HTMLDivElement {
     image?.remove();
   }
 
-  const subtitleParts = [puzzle.type, puzzle.brand].filter(Boolean);
-  const subtitle = wrapper.querySelector(".subtitle");
-  if (subtitleParts.length > 0) subtitle!.textContent = subtitleParts.join(" · ");
-  else subtitle?.remove();
-
   const notes = wrapper.querySelector(".notes");
   if (puzzle.notes) notes!.textContent = puzzle.notes;
   else notes?.remove();

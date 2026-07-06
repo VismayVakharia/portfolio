@@ -1,87 +1,172 @@
 [
-  { "name": "2x2", "category": "Cubic", "type": "2x2" },
+  {
+    "name": "2x2",
+    "category": "Cubic",
+    "type": "2x2",
+    "notes": "The 3x3's smaller, corners-only cousin — no edge pieces means fewer parity headaches.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Solved_2x2x2.jpg"
+  },
   {
     "name": "3x3",
     "category": "Cubic",
     "type": "3x3",
     "brand": "GAN 356 RS",
-    "notes": "The one that started it. Still the puzzle I reach for when I want to think about something else."
+    "notes": "The one that started it. Still the puzzle I reach for when I want to think about something else.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/gan356rs.jpg?v=1581458392&width=800"
   },
-  { "name": "4x4", "category": "Cubic", "type": "4x4" },
-  { "name": "5x5", "category": "Cubic", "type": "5x5" },
-  { "name": "6x6", "category": "Cubic", "type": "6x6" },
+  {
+    "name": "4x4",
+    "category": "Cubic",
+    "type": "4x4",
+    "notes": "Adds a parity problem the 3x3 doesn't have: even layers mean some scrambles need extra algorithms to fix.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/52/Rubiks_revenge_solved.jpg"
+  },
+  {
+    "name": "5x5",
+    "category": "Cubic",
+    "type": "5x5",
+    "notes": "Big enough to have real center and edge pieces to build, not just twist into place.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Solved_5x5x5.jpg"
+  },
+  {
+    "name": "6x6",
+    "category": "Cubic",
+    "type": "6x6",
+    "notes": "Even-layered like the 4x4, but large enough that reduction takes a while before it even looks like a cube.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/82/V-Cube_6_solved.jpg"
+  },
   {
     "name": "1x3x3",
     "category": "Cuboid",
     "type": "Floppy Cube",
-    "notes": "Folds flat instead of twisting — more fidget toy than puzzle some days."
+    "notes": "Folds flat instead of twisting — more fidget toy than puzzle some days.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/yj133b1_30daf370-c06d-4b08-92ef-dcebae3db632.jpg?v=1581456179&width=800"
   },
-  { "name": "Pyraminx", "category": "Pyraminx Family", "type": "Pyraminx", "brand": "QiYi" },
-  { "name": "Megaminx", "category": "Dodecahedral", "type": "Megaminx" },
+  {
+    "name": "Pyraminx",
+    "category": "Pyraminx Family",
+    "type": "Pyraminx",
+    "brand": "QiYi",
+    "notes": "Four axial turns solve most of it in seconds — the real puzzle is the trickier tips on the last layer.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/qiyipyraminxb1_ff1e4cfc-cbd7-43ab-a583-9bb536d1838f.jpg?v=1581455539&width=800"
+  },
+  {
+    "name": "Megaminx",
+    "category": "Dodecahedral",
+    "type": "Megaminx",
+    "notes": "A dodecahedral 3x3 — twelve faces instead of six, and a last layer that takes twice as long.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Megaminx_solved_cubemeister_com.jpg"
+  },
   {
     "name": "Square-1",
     "category": "Shape Mods",
     "type": "Square-1",
-    "notes": "Reshapes into all kinds of parallelograms mid-solve — barely looks like a cube half the time."
+    "notes": "Reshapes into all kinds of parallelograms mid-solve — barely looks like a cube half the time.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Square-1_solved.jpg"
   },
-  { "name": "Skewb", "category": "Skewb Family", "type": "Skewb" },
+  {
+    "name": "Skewb",
+    "category": "Skewb Family",
+    "type": "Skewb",
+    "notes": "Turns through its corners instead of faces, so every twist reshuffles the whole puzzle at once.",
+    "imageUrl": "https://ruwix.com/pics/skewb-cube-twist.jpg"
+  },
   {
     "name": "Polaris Cube",
     "category": "Skewb Family",
     "type": "Polaris",
-    "notes": "A Skewb that also turns vertically and horizontally once twisted partway open."
+    "notes": "A Skewb that also turns vertically and horizontally once twisted partway open.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/iZnkmKITsHy2G.jpg?v=1581458307&width=800"
   },
-  { "name": "Six Spot Cube", "category": "Skewb Family", "type": "Six Spot" },
+  {
+    "name": "Six Spot Cube",
+    "category": "Skewb Family",
+    "type": "Six Spot",
+    "notes": "A 3x3 shape mod with six center pieces swapped, so it never looks fully solved even when it is.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/qiyisixspotcubestickerless1.jpg?v=1581458329&width=800"
+  },
   {
     "name": "Mirror Cube",
     "category": "Shape Mods",
     "type": "Mirror Cube",
-    "notes": "Same cuts as a 3x3, but every piece is a different size — solved by shape, not color."
+    "notes": "Same cuts as a 3x3, but every piece is a different size — solved by shape, not color.",
+    "imageUrl": "https://ruwix.com/pics/mirror-cube-solved-silver.jpg"
   },
   {
     "name": "Ghost Cube",
     "category": "Shape Mods",
     "type": "Ghost Cube",
-    "notes": "Sheared into odd angles — looks scrambled even when it's solved."
+    "notes": "Sheared into odd angles — looks scrambled even when it's solved.",
+    "imageUrl": "https://www.ruwix.com/pics/puzzles/ghost-cube/solved-ghost-cube-mefferts.jpg"
   },
   {
     "name": "Master Morphix",
     "category": "Shape Mods",
     "type": "Master Morphix",
-    "notes": "A 3x3 mechanism hiding inside a shape-shifting tetrahedron."
+    "notes": "A 3x3 mechanism hiding inside a shape-shifting tetrahedron.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/ssmastermorphixb11_de030165-d786-47a9-9bf9-f2b5a39e417d.jpg?v=1581457016&width=800"
   },
   {
     "name": "Duomo Cube",
     "category": "Shape Mods",
     "type": "Duomo Cube",
-    "notes": "A mashup of Pyraminx and Master Morphix — the color scramble looks worse than it is."
+    "notes": "A mashup of Pyraminx and Master Morphix — the color scramble looks worse than it is.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/qiyiduomosl1.jpg?v=1587483444&width=800"
   },
   {
     "name": "Puppet Cube",
     "category": "Shape Mods",
     "type": "Puppet Cube",
-    "notes": "A 3x3 hidden inside a 2x2 shell. Deceptively hard to read."
+    "notes": "A 3x3 hidden inside a 2x2 shell. Deceptively hard to read.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/U5e8DIptjGRwl.jpg?v=1604606181&width=800"
   },
-  { "name": "Axis Cube", "category": "Shape Mods", "type": "Axis Cube" },
-  { "name": "Fisher Cube", "category": "Shape Mods", "type": "Fisher Cube" },
-  { "name": "Windmill Cube", "category": "Shape Mods", "type": "Windmill Cube" },
-  { "name": "Pentacle Cube", "category": "Shape Mods", "type": "Pentacle Cube" },
+  {
+    "name": "Axis Cube",
+    "category": "Shape Mods",
+    "type": "Axis Cube",
+    "notes": "Cut at an angle so solved and scrambled states can look confusingly similar from across the room.",
+    "imageUrl": "https://ruwix.com/pics/3x3x3-axis-cube.jpg"
+  },
+  {
+    "name": "Fisher Cube",
+    "category": "Shape Mods",
+    "type": "Fisher Cube",
+    "notes": "A 3x3 twisted 45 degrees on its core — same mechanism, disorienting new shape.",
+    "imageUrl": "https://ruwix.com/pics/3x3x3-fisher-cube-scrambled.jpg"
+  },
+  {
+    "name": "Windmill Cube",
+    "category": "Shape Mods",
+    "type": "Windmill Cube",
+    "notes": "Some layers shift diagonally instead of turning flat, so it drifts into a pinwheel shape mid-solve.",
+    "imageUrl": "https://ruwix.com/pics/windmill-cube/how-to-solve-windmill-cube.jpg"
+  },
+  {
+    "name": "Pentacle Cube",
+    "category": "Shape Mods",
+    "type": "Pentacle Cube",
+    "notes": "A five-pointed star shape mod hiding a 3x3 mechanism underneath the points.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/qiyipentaclecubeb1_35537c59-f5ae-4227-a6ff-3bf370478d64.jpg?v=1581456985&width=800"
+  },
   {
     "name": "Gear Cube",
     "category": "Gear Puzzles",
     "type": "Gear 3x3",
-    "notes": "Interlocking gears mean one turn moves more than one layer at once."
+    "notes": "Interlocking gears mean one turn moves more than one layer at once.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/The_Gear_Cube.jpg"
   },
   {
     "name": "Curvy Copter",
     "category": "Jumbling",
     "type": "Curvy Copter",
-    "notes": "Edge-turning with curved cuts that let it fold into non-cube shapes mid-solve."
+    "notes": "Edge-turning with curved cuts that let it fold into non-cube shapes mid-solve.",
+    "imageUrl": "https://www.thecubicle.com/cdn/shop/products/meffertscurvycopterb1.jpg?v=1581456367&width=800"
   },
   {
     "name": "Infinity Cube",
     "category": "Other",
     "type": "Infinity Cube",
-    "notes": "Less a twisty puzzle, more an endless-folding fidget toy — still earns a shelf spot."
+    "notes": "Less a twisty puzzle, more an endless-folding fidget toy — still earns a shelf spot.",
+    "imageUrl": "https://fidgettoysplus.com/cdn/shop/products/image_0b0da297-bcf2-4fd2-9e1c-af7a01469936.png?v=1668985368&width=800"
   }
 ]
