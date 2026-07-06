@@ -2,6 +2,8 @@ import manualBooks from "../data/books.json";
 import jeluBooks from "../data/jelu-books.json";
 import bookRowHTML from "../components/book-row.html?raw";
 
+import { stars, renderGroup } from "./dom-utils";
+
 type BookStatus = "reading" | "finished" | "tbr";
 
 type Book = {
@@ -14,10 +16,6 @@ type Book = {
   notes?: string;
   coverUrl?: string;
 };
-
-function stars(rating: number): string {
-  return "★".repeat(rating) + "☆".repeat(5 - rating);
-}
 
 export function initBooks(): void {
   const section = document.getElementById("books");
@@ -41,27 +39,14 @@ export function initBooks(): void {
   }
 
   if (reading.length > 0) {
-    groups.appendChild(renderRowGroup("Currently Reading", reading.map(createBookRow)));
+    groups.appendChild(renderGroup("Currently Reading", reading.map(createBookRow)));
   }
   if (finished.length > 0) {
-    groups.appendChild(renderRowGroup("Read", finished.map(createBookRow)));
+    groups.appendChild(renderGroup("Read", finished.map(createBookRow)));
   }
   if (tbr.length > 0) {
     groups.appendChild(renderTbrGroup(tbr));
   }
-}
-
-function renderRowGroup(label: string, rows: HTMLElement[]): HTMLDivElement {
-  const wrap = document.createElement("div");
-  const heading = document.createElement("h3");
-  heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
-  heading.textContent = label;
-  const list = document.createElement("div");
-  list.className = "space-y-6";
-  rows.forEach((row) => list.appendChild(row));
-  wrap.appendChild(heading);
-  wrap.appendChild(list);
-  return wrap;
 }
 
 function renderTbrGroup(tbr: Book[]): HTMLDivElement {

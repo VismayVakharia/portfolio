@@ -1,3 +1,5 @@
+import darkFaviconURL from "../dark-favicon.png?url";
+
 import { applyPalette, type PaletteName } from "./color-picker";
 
 export function initTheme(): void {
@@ -7,6 +9,11 @@ export function initTheme(): void {
 
   const saved = localStorage.getItem("accentPalette") as PaletteName | null;
   if (saved) applyPalette(saved);
+}
+
+export function initFavicon(): void {
+  const linkFavicon = document.getElementById("favicon") as HTMLLinkElement;
+  linkFavicon.href = darkFaviconURL;
 }
 
 export function toggleTheme(): void {

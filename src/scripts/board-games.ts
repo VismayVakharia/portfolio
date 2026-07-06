@@ -1,6 +1,8 @@
 import boardGames from "../data/board-games.json";
 import boardGameRowHTML from "../components/board-game-row.html?raw";
 
+import { stars, renderGroup } from "./dom-utils";
+
 type BoardGameStatus = "offline" | "online" | "both" | "wishlist";
 
 type BoardGame = {
@@ -13,10 +15,6 @@ type BoardGame = {
   bggUrl?: string;
   imageUrl?: string;
 };
-
-function stars(rating: number): string {
-  return "★".repeat(rating) + "☆".repeat(5 - rating);
-}
 
 export function initBoardGames(): void {
   const section = document.getElementById("board-games");
@@ -42,19 +40,6 @@ export function initBoardGames(): void {
   if (played.length > 0) groups.appendChild(renderGroup("Played", played.map(createBoardGameRow)));
   if (playedOnline.length > 0) groups.appendChild(renderGroup("Played Online", playedOnline.map(createBoardGameRow)));
   if (wishlist.length > 0) groups.appendChild(renderGroup("Wishlist", wishlist.map(createBoardGameRow)));
-}
-
-function renderGroup(label: string, rows: HTMLElement[]): HTMLDivElement {
-  const wrap = document.createElement("div");
-  const heading = document.createElement("h3");
-  heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
-  heading.textContent = label;
-  const list = document.createElement("div");
-  list.className = "space-y-6";
-  rows.forEach((row) => list.appendChild(row));
-  wrap.appendChild(heading);
-  wrap.appendChild(list);
-  return wrap;
 }
 
 function createBoardGameRow(game: BoardGame): HTMLDivElement {

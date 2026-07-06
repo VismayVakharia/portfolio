@@ -54,7 +54,6 @@ function createProjectCard(project: Project): HTMLDivElement {
 
   wrapper.querySelector(".title")!.textContent = project.title;
   wrapper.querySelector(".subtitle")!.textContent = project.subtitle;
-  wrapper.querySelector(".subtitle")!.textContent = project.subtitle;
 
   const detailsList = wrapper.querySelector("ul.details") as HTMLUListElement;
   project.details.forEach((detail) => {
