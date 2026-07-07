@@ -31,32 +31,11 @@ export function initPuzzles(): void {
         >Worldle</a
       >, which is slowly teaching me geography I should've learned in school.
     </p>
-    <div id="puzzles-groups" class="space-y-12"></div>
+    <div id="puzzles-grid" class="grid grid-cols-2 gap-3 sm:grid-cols-3"></div>
   `;
 
-  const groups = document.getElementById("puzzles-groups")!;
-
-  groupByCategory(puzzlesData as Puzzle[]).forEach(([category, puzzles]) => {
-    const wrap = document.createElement("div");
-    const heading = document.createElement("h3");
-    heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
-    heading.textContent = category;
-    const grid = document.createElement("div");
-    grid.className = "grid grid-cols-1 gap-6 sm:grid-cols-2";
-    puzzles.forEach((puzzle) => grid.appendChild(createPuzzleCard(puzzle)));
-    wrap.appendChild(heading);
-    wrap.appendChild(grid);
-    groups.appendChild(wrap);
-  });
-}
-
-function groupByCategory(puzzles: Puzzle[]): [string, Puzzle[]][] {
-  const map = new Map<string, Puzzle[]>();
-  puzzles.forEach((puzzle) => {
-    if (!map.has(puzzle.category)) map.set(puzzle.category, []);
-    map.get(puzzle.category)!.push(puzzle);
-  });
-  return [...map.entries()];
+  const grid = document.getElementById("puzzles-grid")!;
+  (puzzlesData as Puzzle[]).forEach((puzzle) => grid.appendChild(createPuzzleCard(puzzle)));
 }
 
 function createPuzzleCard(puzzle: Puzzle): HTMLDivElement {
@@ -64,6 +43,7 @@ function createPuzzleCard(puzzle: Puzzle): HTMLDivElement {
   wrapper.innerHTML = puzzleCardHTML;
 
   wrapper.querySelector(".name")!.textContent = puzzle.name;
+  wrapper.querySelector(".category")!.textContent = puzzle.category;
 
   const image = wrapper.querySelector("img.image");
   if (puzzle.imageUrl) {
