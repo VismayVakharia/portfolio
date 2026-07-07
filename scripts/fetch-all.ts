@@ -175,15 +175,16 @@ function mapJeluStatus(entry: {
   lastReadingEventDate?: string | null;
   userAvgRating?: number | null;
   toRead?: boolean | null;
-}): BookStatus | null {
+}): BookStatus {
   if (entry.lastReadingEvent === "CURRENTLY_READING") return "reading";
   if (entry.lastReadingEvent === "FINISHED") return "finished";
   // Some books have a reading date or rating recorded without a recognized event type
   // (e.g. imported without event history) — treat those as finished too, rather than
   // silently dropping books the user has actually read.
   if (entry.lastReadingEventDate || entry.userAvgRating != null) return "finished";
-  if (entry.toRead) return "tbr";
-  return null; // DROPPED — no event, no date/rating, and not on the to-read list
+  // Everything else — owned but unread, whether or not it's on the to-read list — is
+  // surfaced as "To Read" rather than dropped, so the whole library shows on the shelf.
+  return "tbr";
 }
 
 async function fetchOpenLibraryCover(title: string, author: string): Promise<string | undefined> {
@@ -228,14 +229,9 @@ async function fetchJelu(): Promise<void> {
     }>;
   };
 
-  const classified = json.content.flatMap((entry) => {
-    const status = mapJeluStatus(entry);
-    if (!status) return [];
-    return [{ entry, status }];
-  });
-
   const books: JeluBook[] = [];
-  for (const { entry, status } of classified) {
+  for (const entry of json.content) {
+    const status = mapJeluStatus(entry);
     const author = entry.book.authors.map((a) => a.name).join(", ");
 
     const year =
