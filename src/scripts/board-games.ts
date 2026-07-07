@@ -1,7 +1,9 @@
 import boardGames from "../data/board-games.json";
-import boardGameRowHTML from "../components/board-game-row.html?raw";
+import boardGameCardHTML from "../components/board-game-card.html?raw";
 
-import { stars, renderGroup } from "./dom-utils";
+import { renderGroup } from "./dom-utils";
+
+const GRID = "grid grid-cols-2 gap-3 sm:grid-cols-3";
 
 type BoardGameStatus = "offline" | "online" | "both" | "wishlist";
 
@@ -21,8 +23,8 @@ export function initBoardGames(): void {
   if (!section) return;
 
   const games = boardGames as BoardGame[];
-  const played = games.filter((g) => g.status === "offline" || g.status === "both");
-  const playedOnline = games.filter((g) => g.status === "online" || g.status === "both");
+  // Online vs offline isn't a meaningful split — everything not on the wishlist is just "played".
+  const played = games.filter((g) => g.status !== "wishlist");
   const wishlist = games.filter((g) => g.status === "wishlist");
 
   section.innerHTML = `
@@ -37,18 +39,24 @@ export function initBoardGames(): void {
     return;
   }
 
-  if (played.length > 0) groups.appendChild(renderGroup("Played", played.map(createBoardGameRow)));
-  if (playedOnline.length > 0) groups.appendChild(renderGroup("Played Online", playedOnline.map(createBoardGameRow)));
-  if (wishlist.length > 0) groups.appendChild(renderGroup("Wishlist", wishlist.map(createBoardGameRow)));
+  if (played.length > 0) {
+    // Single group — no redundant subheading, so render the grid directly.
+    const grid = document.createElement("div");
+    grid.className = GRID;
+    played.map(createBoardGameCard).forEach((card) => grid.appendChild(card));
+    groups.appendChild(grid);
+  }
+  if (wishlist.length > 0) groups.appendChild(renderGroup("Wishlist", wishlist.map(createBoardGameCard), GRID));
 }
 
-function createBoardGameRow(game: BoardGame): HTMLDivElement {
+function createBoardGameCard(game: BoardGame): HTMLDivElement {
   const wrapper = document.createElement("div");
-  wrapper.innerHTML = boardGameRowHTML;
+  wrapper.innerHTML = boardGameCardHTML;
+  const card = wrapper.firstElementChild as HTMLDivElement;
 
-  wrapper.querySelector(".title")!.textContent = game.title;
+  card.querySelector(".title")!.textContent = game.title;
 
-  const cover = wrapper.querySelector("img.cover");
+  const cover = card.querySelector("img.cover");
   if (game.imageUrl) {
     cover?.setAttribute("src", game.imageUrl);
     cover?.setAttribute("alt", game.title);
@@ -56,22 +64,17 @@ function createBoardGameRow(game: BoardGame): HTMLDivElement {
     cover?.remove();
   }
 
-  const subtitleParts = [game.genre, game.players ? `${game.players} players` : undefined].filter(Boolean);
-  const subtitle = wrapper.querySelector(".subtitle");
-  if (subtitleParts.length > 0) subtitle!.textContent = subtitleParts.join(" · ");
-  else subtitle?.remove();
+  const players = card.querySelector(".players");
+  if (game.players) card.querySelector(".players-count")!.textContent = game.players;
+  else players?.remove();
 
-  const notes = wrapper.querySelector(".notes");
-  if (game.notes) notes!.textContent = game.notes;
-  else notes?.remove();
+  const genre = card.querySelector(".genre");
+  if (game.genre) genre!.textContent = game.genre;
+  else genre?.remove();
 
-  const bggLink = wrapper.querySelector("a.bgg-link");
+  const bggLink = card.querySelector("a.bgg-link");
   if (game.bggUrl) bggLink?.setAttribute("href", game.bggUrl);
   else bggLink?.remove();
 
-  const rating = wrapper.querySelector(".rating");
-  if (game.status !== "wishlist" && game.rating != null) rating!.textContent = stars(game.rating);
-  else rating?.remove();
-
-  return wrapper;
+  return card;
 }

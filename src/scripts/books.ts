@@ -1,8 +1,6 @@
 import manualBooks from "../data/books.json";
 import jeluBooks from "../data/jelu-books.json";
-import bookRowHTML from "../components/book-row.html?raw";
-
-import { stars, renderGroup } from "./dom-utils";
+import bookSpineHTML from "../components/book-spine.html?raw";
 
 type BookStatus = "reading" | "finished" | "tbr";
 
@@ -38,63 +36,70 @@ export function initBooks(): void {
     return;
   }
 
-  if (reading.length > 0) {
-    groups.appendChild(renderGroup("Currently Reading", reading.map(createBookRow)));
-  }
-  if (finished.length > 0) {
-    groups.appendChild(renderGroup("Read", finished.map(createBookRow)));
-  }
-  if (tbr.length > 0) {
-    groups.appendChild(renderTbrGroup(tbr));
-  }
+  if (reading.length > 0) groups.appendChild(renderShelf("Currently Reading", reading));
+  if (finished.length > 0) groups.appendChild(renderShelf("Read", finished));
+  if (tbr.length > 0) groups.appendChild(renderShelf("To Read", tbr));
 }
 
-function renderTbrGroup(tbr: Book[]): HTMLDivElement {
+// ponytail: fixed per-shelf cap so a big library (esp. To Read) can't grow unbounded;
+// the rest collapse into a "+N more" tile that expands on click. Bump if a shelf still feels short.
+const MAX_SPINES = 12;
+
+function renderShelf(label: string, books: Book[]): HTMLDivElement {
   const wrap = document.createElement("div");
   const heading = document.createElement("h3");
   heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
-  heading.textContent = "To Read";
-  const list = document.createElement("div");
-  list.className = "grid grid-cols-1 gap-x-8 gap-y-1 text-sm sm:grid-cols-2";
-  tbr.forEach((book) => {
-    const line = document.createElement("p");
-    line.className = "text-foreground-muted";
-    line.textContent = `${book.title} — ${book.author}`;
-    list.appendChild(line);
-  });
+  heading.textContent = label;
+  const shelf = document.createElement("div");
+  // Spines stand on a hairline "shelf edge"; wrap (not scroll) so hover popovers never clip.
+  shelf.className = "border-border flex flex-wrap items-end gap-x-3 gap-y-8 border-b-2 pb-3";
+
+  books.slice(0, MAX_SPINES).forEach((book) => shelf.appendChild(createBookSpine(book)));
+
+  const hidden = books.slice(MAX_SPINES);
+  if (hidden.length > 0) {
+    const more = createMoreTile(hidden.length);
+    more.addEventListener("click", () => {
+      hidden.forEach((book) => shelf.insertBefore(createBookSpine(book), more));
+      more.remove();
+    });
+    shelf.appendChild(more);
+  }
+
   wrap.appendChild(heading);
-  wrap.appendChild(list);
+  wrap.appendChild(shelf);
   return wrap;
 }
 
-function createBookRow(book: Book): HTMLDivElement {
+function createMoreTile(count: number): HTMLButtonElement {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "more-spine";
+  btn.setAttribute("aria-label", `Show ${count} more`);
+  btn.innerHTML = `<span class="more-count">+${count}</span><span class="more-label">more</span>`;
+  return btn;
+}
+
+function createBookSpine(book: Book): HTMLDivElement {
   const wrapper = document.createElement("div");
-  wrapper.innerHTML = bookRowHTML;
+  wrapper.innerHTML = bookSpineHTML;
+  const spine = wrapper.firstElementChild as HTMLDivElement;
 
-  wrapper.querySelector(".title")!.textContent = book.title;
+  spine.querySelectorAll<HTMLElement>(".title, .detail-title").forEach((el) => (el.textContent = book.title));
 
-  const badge = wrapper.querySelector(".badge");
-  if (book.status === "reading") badge!.textContent = "reading";
-  else badge?.remove();
+  spine.querySelectorAll("img.cover, img.detail-cover").forEach((img) => {
+    if (book.coverUrl) {
+      img.setAttribute("src", book.coverUrl);
+      img.setAttribute("alt", book.title);
+    } else {
+      img.remove();
+    }
+  });
 
-  const subtitleParts = [book.author, book.genre, book.status === "finished" ? book.year?.toString() : undefined];
-  wrapper.querySelector(".subtitle")!.textContent = subtitleParts.filter(Boolean).join(" · ");
+  spine.querySelector(".detail-author")!.textContent = book.author;
 
-  const notes = wrapper.querySelector(".notes");
-  if (book.notes) notes!.textContent = book.notes;
-  else notes?.remove();
+  const statusLabel = book.status === "reading" ? "Reading" : book.status === "finished" ? "Read" : "To read";
+  spine.querySelector(".detail-meta")!.textContent = [book.year?.toString(), statusLabel].filter(Boolean).join(" · ");
 
-  const cover = wrapper.querySelector("img.cover");
-  if (book.coverUrl) {
-    cover?.setAttribute("src", book.coverUrl);
-    cover?.setAttribute("alt", book.title);
-  } else {
-    cover?.remove();
-  }
-
-  const rating = wrapper.querySelector(".rating");
-  if (book.status === "finished" && book.rating != null) rating!.textContent = stars(book.rating);
-  else rating?.remove();
-
-  return wrapper;
+  return spine;
 }

@@ -1,8 +1,13 @@
-<div class="game-card border-border overflow-hidden rounded border">
+<div class="game-card border-border hover:border-accent/40 overflow-hidden rounded border transition-colors">
   <img src="" alt="" class="cover aspect-video w-full object-cover" loading="lazy" />
   <div class="p-3">
     <h3 class="title text-foreground text-sm leading-tight font-semibold"></h3>
     <div class="platform-tags mt-1 flex flex-wrap gap-1"></div>
-    <div class="tag-list mt-2 flex flex-wrap gap-1"></div>
+    <div class="mt-2 flex items-center gap-2">
+      <div class="bg-border h-1 flex-1 overflow-hidden rounded">
+        <div class="playtime-fill bg-accent h-full rounded"></div>
+      </div>
+      <span class="playtime-label text-foreground-muted shrink-0 text-[10px] tabular-nums"></span>
+    </div>
   </div>
 </div>

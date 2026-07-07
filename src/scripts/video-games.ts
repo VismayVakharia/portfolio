@@ -73,8 +73,9 @@ export function initVideoGames(): void {
 
   if (all.length === 0) return;
 
+  const maxPlaytime = Math.max(...all.map(totalPlaytime), 1);
   const grid = document.getElementById("video-games-grid")!;
-  all.forEach((game) => grid.appendChild(createGameCard(game)));
+  all.forEach((game) => grid.appendChild(createGameCard(game, maxPlaytime)));
 }
 
 // Tailwind's content scanner needs literal class strings (not interpolated), hence the switch.
@@ -84,7 +85,7 @@ function platformTagClass(platform: string): string {
     : "bg-platform-playstation/10 text-platform-playstation border border-platform-playstation/25 px-1.5 py-0.5 rounded text-[10px]";
 }
 
-function createGameCard(game: VideoGame): HTMLDivElement {
+function createGameCard(game: VideoGame, maxPlaytime: number): HTMLDivElement {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = gameCardHTML;
 
@@ -94,6 +95,11 @@ function createGameCard(game: VideoGame): HTMLDivElement {
 
   wrapper.querySelector(".title")!.textContent = game.title;
 
+  const total = totalPlaytime(game);
+  // Min 4% so short-but-nonzero playtimes still register visually.
+  (wrapper.querySelector(".playtime-fill") as HTMLElement).style.width = `${Math.max((total / maxPlaytime) * 100, 4)}%`;
+  wrapper.querySelector(".playtime-label")!.textContent = `${Math.round(total)}h`;
+
   const platformTags = wrapper.querySelector(".platform-tags")!;
   game.platforms.forEach(({ platform, playtimeHours }) => {
     const tag = document.createElement("span");
@@ -102,13 +108,7 @@ function createGameCard(game: VideoGame): HTMLDivElement {
     platformTags.appendChild(tag);
   });
 
-  const tagList = wrapper.querySelector("div.tag-list")!;
-  game.genres.forEach((genre) => {
-    const chip = document.createElement("span");
-    chip.className = "bg-accent/10 text-accent border border-accent/25 px-1.5 py-0.5 rounded text-[10px]";
-    chip.textContent = genre;
-    tagList.appendChild(chip);
-  });
-
+  // Genres are kept in the data (steam-games.json / VideoGame.genres) but not rendered —
+  // PSN supplies none, so showing them only on PC games looked lopsided.
   return wrapper;
 }
