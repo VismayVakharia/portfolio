@@ -3,14 +3,7 @@
     "title": "Task Planning for Mobile Manipulation in Retail Stores using Foundation Models with Iterative Re-planning",
     "conference": "IEEE ICRA Workshop on Language and Semantics of Task and Motion Planning (TAMP)",
     "year": 2025,
-    "authors": [
-      "Vismay Vakharia",
-      "Sanjana Garai",
-      "Rolif Lima",
-      "Nijil George",
-      "Vighnesh Vatsal",
-      "Kaushik Das"
-    ],
+    "authors": ["Vismay Vakharia", "Sanjana Garai", "Rolif Lima", "Nijil George", "Vighnesh Vatsal", "Kaushik Das"],
     "icon": "fas fa-file-alt",
     "doi": "",
     "link": "https://dyalab.mines.edu/2025/icra-workshop/#submissions",
@@ -75,13 +68,7 @@
     "title": "Augmenting Robot Teleoperation with Shared Autonomy via Model Predictive Control",
     "conference": "IEEE Conference on Telepresence",
     "year": 2024,
-    "authors": [
-      "Rolif Lima",
-      "Somdeb Saha",
-      "Vismay Vakharia",
-      "Vighnesh Vatsal",
-      "Kaushik Das"
-    ],
+    "authors": ["Rolif Lima", "Somdeb Saha", "Vismay Vakharia", "Vighnesh Vatsal", "Kaushik Das"],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/Telepresence63209.2024.10841639",
     "link": "",
@@ -91,14 +78,7 @@
     "title": "Model-Mediated Delay Compensation with Goal Prediction for Robot Teleoperation Over Internet",
     "conference": "IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
     "year": 2023,
-    "authors": [
-      "Rolif Lima",
-      "Vismay Vakharia",
-      "Utsav Rai",
-      "Hardik Mehta",
-      "Vighnesh Vatsal",
-      "Kaushik Das"
-    ],
+    "authors": ["Rolif Lima", "Vismay Vakharia", "Utsav Rai", "Hardik Mehta", "Vighnesh Vatsal", "Kaushik Das"],
     "icon": "fas fa-file-alt",
     "doi": "10.1109/SMC53992.2023.10394188",
     "link": "",
@@ -126,14 +106,7 @@
     "title": "Transparency Enhancement in Teleoperation: An Improved Model-Free Predictor for Varying Network Delay in Telerobotic Application",
     "conference": "European Control Conference (ECC)",
     "year": 2021,
-    "authors": [
-      "Nithya Sridhar",
-      "Rolif Lima",
-      "Utsav Rai",
-      "Vismay Vakharia",
-      "Kaushik Das",
-      "Balamuralidhar P"
-    ],
+    "authors": ["Nithya Sridhar", "Rolif Lima", "Utsav Rai", "Vismay Vakharia", "Kaushik Das", "Balamuralidhar P"],
     "icon": "fas fa-file-alt",
     "doi": "10.23919/ECC54610.2021.9654847",
     "link": "",
