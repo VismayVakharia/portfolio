@@ -4,83 +4,121 @@
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/252950/header.jpg",
     "playtimeHours": 1046.1,
-    "genres": ["Action", "Indie", "Racing", "Sports"]
+    "genres": [
+      "Action",
+      "Indie",
+      "Racing",
+      "Sports"
+    ]
   },
   {
     "title": "The Crew 2",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/646910/header.jpg",
     "playtimeHours": 196.9,
-    "genres": ["Action", "Massively Multiplayer", "Racing"]
+    "genres": [
+      "Action",
+      "Massively Multiplayer",
+      "Racing"
+    ]
   },
   {
     "title": "Tom Clancy's Ghost Recon® Wildlands",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/460930/header.jpg",
     "playtimeHours": 118.1,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Age of Empires II: Definitive Edition",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/813780/header.jpg",
     "playtimeHours": 97.3,
-    "genres": ["Strategy"]
+    "genres": [
+      "Strategy"
+    ]
   },
   {
     "title": "Counter-Strike 2",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg",
     "playtimeHours": 31.5,
-    "genres": ["Action", "Free To Play"]
+    "genres": [
+      "Action",
+      "Free To Play"
+    ]
   },
   {
     "title": "Assassin's Creed II",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/33230/header.jpg",
     "playtimeHours": 29.8,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Ghost Recon Breakpoint",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/2231380/header.jpg",
     "playtimeHours": 27.7,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Portal",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/400/header.jpg",
     "playtimeHours": 20,
-    "genres": ["Action"]
+    "genres": [
+      "Action"
+    ]
   },
   {
     "title": "Sniper Elite 4",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/312660/header.jpg",
     "playtimeHours": 16.3,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Assassin's Creed Brotherhood",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/48190/header.jpg",
     "playtimeHours": 15.7,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Portal 2",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/620/header.jpg",
     "playtimeHours": 15.4,
-    "genres": ["Action", "Adventure"]
+    "genres": [
+      "Action",
+      "Adventure"
+    ]
   },
   {
     "title": "Overcooked! 2",
     "platform": "PC",
     "coverUrl": "https://cdn.akamai.steamstatic.com/steam/apps/728880/header.jpg",
     "playtimeHours": 13.4,
-    "genres": ["Action", "Casual", "Indie"]
+    "genres": [
+      "Action",
+      "Casual",
+      "Indie"
+    ]
   }
 ]
