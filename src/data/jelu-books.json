@@ -1,20 +1,69 @@
 [
   {
+    "title": "Project Hail Mary",
+    "author": "Andy Weir",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780593355275-M.jpg"
+  },
+  {
+    "title": "Let's Talk Money",
+    "author": "Monika Halan",
+    "status": "reading",
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9789352779406-M.jpg"
+  },
+  {
+    "title": "tuesdays with Morrie",
+    "author": "Mitch Albom",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780751527377-M.jpg"
+  },
+  {
+    "title": "Algorithms to Live By",
+    "author": "Brian Christian, Tom Griffiths",
+    "status": "finished",
+    "year": 2025,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780007547999-M.jpg"
+  },
+  {
+    "title": "Sherlock Holmes",
+    "author": "Sir Arthur Conan Doyle",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788122313123-M.jpg"
+  },
+  {
+    "title": "Animal Farm",
+    "author": "George Orwell",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788172344399-M.jpg"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9780099549482-M.jpg"
+  },
+  {
+    "title": "The Theory Of Everything",
+    "author": "Stephen Hawking",
+    "status": "finished",
+    "year": 2026,
+    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788179925911-M.jpg"
+  },
+  {
     "title": "Essentialism",
     "author": "Greg McKeown",
     "status": "tbr",
     "coverUrl": "https://covers.openlibrary.org/b/isbn/9780753550281-M.jpg"
   },
   {
-    "title": "The Theory Of Everything",
-    "author": "Stephen Hawking",
-    "status": "reading",
-    "coverUrl": "https://covers.openlibrary.org/b/isbn/9788179925911-M.jpg"
-  },
-  {
     "title": "Serious Men",
     "author": "Manu Joseph",
-    "status": "reading",
+    "status": "tbr",
     "coverUrl": "https://covers.openlibrary.org/b/isbn/9789350291955-M.jpg"
   },
   {
