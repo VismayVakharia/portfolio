@@ -221,6 +221,7 @@ async function fetchJelu(): Promise<void> {
         authors: Array<{ name: string }>;
         isbn13?: string;
         isbn10?: string;
+        image?: string;
       };
       userAvgRating?: number;
       lastReadingEventDate?: string;
@@ -245,12 +246,19 @@ async function fetchJelu(): Promise<void> {
         : undefined;
 
     const isbn = entry.book.isbn13 ?? entry.book.isbn10;
-    const coverUrl = isbn
-      ? `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
-      : await fetchOpenLibraryCover(entry.book.title, author);
+    // Prefer the cover the user manually set in Jelu (their actual edition) over Open
+    // Library's ISBN/title lookup, which can pick the wrong edition or have no cover at all.
+    let coverUrl: string | undefined;
+    if (entry.book.image) {
+      coverUrl = entry.book.image.startsWith("http") ? entry.book.image : `${jeluUrl}/files/${entry.book.image}`;
+    } else if (isbn) {
+      coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    } else {
+      coverUrl = await fetchOpenLibraryCover(entry.book.title, author);
+      await delay(300); // throttle Open Library search calls
+    }
 
     books.push({ title: entry.book.title, author, status, year, rating, coverUrl });
-    if (!isbn) await delay(300);
   }
 
   safeWrite(path.join(DATA_DIR, "jelu-books.json"), books);

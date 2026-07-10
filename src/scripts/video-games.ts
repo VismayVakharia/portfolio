@@ -2,6 +2,8 @@ import steamGames from "../data/steam-games.json";
 import psnGames from "../data/psn-games.json";
 import gameCardHTML from "../components/game-card.html?raw";
 
+import { spineVar } from "./dom-utils";
+
 type RawGame = {
   title: string;
   platform: string;
@@ -19,11 +21,10 @@ type VideoGame = {
 
 // PSN titles carry a trailing ®/™ that Steam titles don't, so the same game owned on
 // both platforms (e.g. "Rocket League" / "Rocket League®") needs normalizing to merge.
+const stripMarks = (title: string): string => title.replace(/[®™]/g, "").trim();
+
 function normalizeTitle(title: string): string {
-  return title
-    .replace(/[®™]/g, "")
-    .trim()
-    .toLowerCase();
+  return stripMarks(title).toLowerCase();
 }
 
 function mergeGames(raw: RawGame[]): VideoGame[] {
@@ -40,7 +41,7 @@ function mergeGames(raw: RawGame[]): VideoGame[] {
       return;
     }
     byKey.set(key, {
-      title: game.title.replace(/[®™]/g, "").trim(),
+      title: stripMarks(game.title),
       coverUrl: game.coverUrl,
       genres: [...(game.genres ?? [])],
       platforms: [{ platform: game.platform, playtimeHours: game.playtimeHours }],
@@ -90,7 +91,7 @@ function createFloppy(game: VideoGame, index: number): HTMLDivElement {
   cover.addEventListener("error", () => cover.remove());
 
   // Reuse the muted book-spine palette so the shelf reads as one unified set.
-  floppy.style.setProperty("--floppy-body", `var(--color-spine-${(index % 6) + 1})`);
+  floppy.style.setProperty("--floppy-body", spineVar(index));
 
   const platforms = game.platforms.map((p) => p.platform).join("/");
   floppy.querySelector(".floppy-meta")!.textContent = `${platforms} · ${Math.round(totalPlaytime(game))}h`;

@@ -10,9 +10,6 @@
   --color-foreground-muted: #666666;
   --color-accent: #5b9ca3;
   --color-border: #2a2a2a;
-
-  --color-platform-pc: #66c0f4;
-  --color-platform-playstation: #4f7fd6;
 }
 
 /* Book spine colours — dusty, desaturated book-cloth tones (not the vibrant
@@ -38,9 +35,6 @@ html.light {
   --color-foreground-muted: #5a5a5a;
   --color-accent: #3d7a82;
   --color-border: #cdd8d8;
-
-  --color-platform-pc: #1f6d9c;
-  --color-platform-playstation: #2c4faa;
 }
 
 /* Easter egg colour palettes — applied via html[data-accent="name"] */
@@ -207,19 +201,14 @@ body {
   text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
 }
 
-/* Shared hover-reveal popover — a quiet slab/tile expands to its cover + full detail
-   on hover or keyboard focus. Used by book slabs, game tiles and board-game tiles, so
-   the whole shelf reads as one interaction instead of three. */
-.has-pop {
-  position: relative;
-}
-
-.has-pop:hover,
-.has-pop:focus-within {
+/* Book cover popover — the flat spine slab expands to reveal its real cover + full
+   detail on hover or keyboard focus. (.book-spine is already position: relative.) */
+.book-spine:hover,
+.book-spine:focus-within {
   z-index: 20;
 }
 
-.shelf-pop {
+.spine-detail {
   position: absolute;
   bottom: calc(100% + 0.5rem);
   left: 50%;
@@ -242,16 +231,15 @@ body {
     transform 0.2s ease;
 }
 
-.has-pop:hover > .shelf-pop,
-.has-pop:focus-within > .shelf-pop {
+.book-spine:hover > .spine-detail,
+.book-spine:focus-within > .spine-detail {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
-/* contain (not cover) so book portraits, game banners and square box art all fit
-   the same thumbnail box without cropping. */
-.shelf-pop .detail-cover {
+/* contain (not cover) so a portrait cover fits the thumbnail box without cropping. */
+.spine-detail .detail-cover {
   flex: none;
   width: 4.25rem;
   height: 5.5rem;
@@ -308,7 +296,6 @@ body {
 }
 
 .floppy {
-  flex: none;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -382,8 +369,6 @@ body {
   flex: 1;
   min-height: 0;
   object-fit: cover;
-  /* same printed/worn dulling as the board-game covers */
-  filter: saturate(0.65) contrast(0.92) brightness(0.94) sepia(0.12);
 }
 /* dark caption bar stays legible whether or not a cover loaded */
 .floppy-caption {
@@ -468,8 +453,12 @@ body {
   aspect-ratio: 1;
   object-fit: contain;
   border-radius: 0.3rem;
-  background: rgb(0 0 0 / 0);
-  /* knock the gloss off the box art so it reads as printed/worn, not a bright cover */
+}
+
+/* Knock the gloss off both cover thumbnails so they read as printed/worn, not bright
+   store art — one dulling so the whole shelf looks like a single aged collection. */
+.floppy-cover,
+.card-cover {
   filter: saturate(0.65) contrast(0.92) brightness(0.94) sepia(0.12);
 }
 .card-foot {
@@ -485,7 +474,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .book-spine,
   .spine-face,
-  .shelf-pop,
+  .spine-detail,
   .tabletop-card {
     transition: none;
   }

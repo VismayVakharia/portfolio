@@ -2,6 +2,8 @@ import manualBooks from "../data/books.json";
 import jeluBooks from "../data/jelu-books.json";
 import bookSpineHTML from "../components/book-spine.html?raw";
 
+import { spineVar } from "./dom-utils";
+
 type BookStatus = "reading" | "finished" | "tbr";
 
 type Book = {
@@ -96,11 +98,10 @@ function createBookSpine(book: Book): HTMLDivElement {
 
   // One hash drives colour + the organic pile: varied slab widths and left offsets.
   const h = hashString(book.title);
-  const spineColor = (h % 6) + 1;
   spine.style.width = `${72 + ((h >> 3) % 5) * 4}%`; // 72–88%
   spine.style.marginLeft = `${((h >> 6) % 4) * 6}px`; // 0–18px
   // Set the colour as a custom prop so the CSS can layer the curved-spine sheen over it.
-  spine.querySelector<HTMLElement>(".spine-face")!.style.setProperty("--spine", `var(--color-spine-${spineColor})`);
+  spine.querySelector<HTMLElement>(".spine-face")!.style.setProperty("--spine", spineVar(h));
 
   const detailCover = spine.querySelector<HTMLImageElement>("img.detail-cover")!;
   if (book.coverUrl) {

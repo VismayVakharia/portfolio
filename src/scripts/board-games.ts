@@ -1,7 +1,7 @@
 import boardGames from "../data/board-games.json";
 import boardGameCardHTML from "../components/board-game-card.html?raw";
 
-import { renderGroup } from "./dom-utils";
+import { spineVar } from "./dom-utils";
 
 const GRID = "grid grid-cols-2 gap-3 sm:grid-cols-3";
 
@@ -39,14 +39,23 @@ export function initBoardGames(): void {
     return;
   }
 
-  if (played.length > 0) {
-    // Single group — no redundant subheading, so render the grid directly.
-    const grid = document.createElement("div");
-    grid.className = GRID;
-    played.map(createBoardGameCard).forEach((card) => grid.appendChild(card));
-    groups.appendChild(grid);
+  // Single group — no redundant subheading, so render the grid directly.
+  if (played.length > 0) groups.appendChild(renderGrid(played));
+  if (wishlist.length > 0) {
+    const wrap = document.createElement("div");
+    const heading = document.createElement("h3");
+    heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
+    heading.textContent = "Wishlist";
+    wrap.append(heading, renderGrid(wishlist));
+    groups.appendChild(wrap);
   }
-  if (wishlist.length > 0) groups.appendChild(renderGroup("Wishlist", wishlist.map(createBoardGameCard), GRID));
+}
+
+function renderGrid(games: BoardGame[]): HTMLDivElement {
+  const grid = document.createElement("div");
+  grid.className = GRID;
+  games.map(createBoardGameCard).forEach((card) => grid.appendChild(card));
+  return grid;
 }
 
 function createBoardGameCard(game: BoardGame, index: number): HTMLDivElement {
@@ -55,7 +64,7 @@ function createBoardGameCard(game: BoardGame, index: number): HTMLDivElement {
   const card = wrapper.firstElementChild as HTMLDivElement;
 
   // Same muted book-spine palette as the floppies, cycled per card.
-  card.style.setProperty("--card-bg", `var(--color-spine-${(index % 6) + 1})`);
+  card.style.setProperty("--card-bg", spineVar(index));
 
   card.querySelector(".title")!.textContent = game.title;
 
