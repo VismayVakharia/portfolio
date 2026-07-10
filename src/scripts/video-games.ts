@@ -67,48 +67,33 @@ export function initVideoGames(): void {
     ${
       all.length === 0
         ? `<p class="text-foreground-muted text-sm">No recent activity.</p>`
-        : `<div class="grid grid-cols-2 gap-3 sm:grid-cols-3" id="video-games-grid"></div>`
+        : `<div class="floppy-grid" id="video-games-grid"></div>`
     }
   `;
 
   if (all.length === 0) return;
 
-  const maxPlaytime = Math.max(...all.map(totalPlaytime), 1);
   const grid = document.getElementById("video-games-grid")!;
-  all.forEach((game) => grid.appendChild(createGameCard(game, maxPlaytime)));
+  all.forEach((game, i) => grid.appendChild(createFloppy(game, i)));
 }
 
-// Tailwind's content scanner needs literal class strings (not interpolated), hence the switch.
-function platformTagClass(platform: string): string {
-  return platform === "PC"
-    ? "bg-platform-pc/10 text-platform-pc border border-platform-pc/25 px-1.5 py-0.5 rounded text-[10px]"
-    : "bg-platform-playstation/10 text-platform-playstation border border-platform-playstation/25 px-1.5 py-0.5 rounded text-[10px]";
-}
-
-function createGameCard(game: VideoGame, maxPlaytime: number): HTMLDivElement {
+function createFloppy(game: VideoGame, index: number): HTMLDivElement {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = gameCardHTML;
+  const floppy = wrapper.firstElementChild as HTMLDivElement;
 
-  const cover = wrapper.querySelector("img.cover")!;
-  cover.setAttribute("src", game.coverUrl);
-  cover.setAttribute("alt", game.title);
+  floppy.querySelector(".title")!.textContent = game.title;
 
-  wrapper.querySelector(".title")!.textContent = game.title;
+  const cover = floppy.querySelector<HTMLImageElement>("img.floppy-cover")!;
+  cover.src = game.coverUrl;
+  cover.alt = game.title;
+  cover.addEventListener("error", () => cover.remove());
 
-  const total = totalPlaytime(game);
-  // Min 4% so short-but-nonzero playtimes still register visually.
-  (wrapper.querySelector(".playtime-fill") as HTMLElement).style.width = `${Math.max((total / maxPlaytime) * 100, 4)}%`;
-  wrapper.querySelector(".playtime-label")!.textContent = `${Math.round(total)}h`;
+  // Reuse the muted book-spine palette so the shelf reads as one unified set.
+  floppy.style.setProperty("--floppy-body", `var(--color-spine-${(index % 6) + 1})`);
 
-  const platformTags = wrapper.querySelector(".platform-tags")!;
-  game.platforms.forEach(({ platform, playtimeHours }) => {
-    const tag = document.createElement("span");
-    tag.className = platformTagClass(platform);
-    tag.textContent = playtimeHours > 0 ? `${platform} · ${playtimeHours}h` : platform;
-    platformTags.appendChild(tag);
-  });
+  const platforms = game.platforms.map((p) => p.platform).join("/");
+  floppy.querySelector(".floppy-meta")!.textContent = `${platforms} · ${Math.round(totalPlaytime(game))}h`;
 
-  // Genres are kept in the data (steam-games.json / VideoGame.genres) but not rendered —
-  // PSN supplies none, so showing them only on PC games looked lopsided.
-  return wrapper;
+  return floppy;
 }

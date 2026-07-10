@@ -51,8 +51,8 @@ function renderShelf(label: string, books: Book[]): HTMLDivElement {
   heading.className = "text-foreground-muted mb-4 text-xs font-bold uppercase tracking-widest";
   heading.textContent = label;
   const shelf = document.createElement("div");
-  // Spines stand on a hairline "shelf edge"; wrap (not scroll) so hover popovers never clip.
-  shelf.className = "border-border flex flex-wrap items-end gap-x-3 gap-y-8 border-b-2 pb-3";
+  // Slabs stacked in a loose pile; slight gap so each book's edge shadow reads.
+  shelf.className = "flex flex-col gap-1";
 
   books.slice(0, MAX_SPINES).forEach((book) => shelf.appendChild(createBookSpine(book)));
 
@@ -80,6 +80,13 @@ function createMoreTile(count: number): HTMLButtonElement {
   return btn;
 }
 
+// ponytail: deterministic string hash, no crypto needed — just picks a spine colour.
+function hashString(s: string): number {
+  let h = 0;
+  for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return h;
+}
+
 function createBookSpine(book: Book): HTMLDivElement {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = bookSpineHTML;
@@ -87,15 +94,29 @@ function createBookSpine(book: Book): HTMLDivElement {
 
   spine.querySelectorAll<HTMLElement>(".title, .detail-title").forEach((el) => (el.textContent = book.title));
 
-  spine.querySelectorAll("img.cover, img.detail-cover").forEach((img) => {
-    if (book.coverUrl) {
-      img.setAttribute("src", book.coverUrl);
-      img.setAttribute("alt", book.title);
-    } else {
-      img.remove();
-    }
-  });
+  // One hash drives colour + the organic pile: varied slab widths and left offsets.
+  const h = hashString(book.title);
+  const spineColor = (h % 6) + 1;
+  spine.style.width = `${72 + ((h >> 3) % 5) * 4}%`; // 72–88%
+  spine.style.marginLeft = `${((h >> 6) % 4) * 6}px`; // 0–18px
+  // Set the colour as a custom prop so the CSS can layer the curved-spine sheen over it.
+  spine.querySelector<HTMLElement>(".spine-face")!.style.setProperty("--spine", `var(--color-spine-${spineColor})`);
 
+  const detailCover = spine.querySelector<HTMLImageElement>("img.detail-cover")!;
+  if (book.coverUrl) {
+    detailCover.src = book.coverUrl;
+    detailCover.alt = book.title;
+    // Open Library returns HTTP 200 with a near-empty placeholder pixel for editions it
+    // has no cover for, so `error` alone won't catch it — check naturalWidth on load too.
+    detailCover.addEventListener("load", () => {
+      if (detailCover.naturalWidth <= 1) detailCover.remove();
+    });
+    detailCover.addEventListener("error", () => detailCover.remove());
+  } else {
+    detailCover.remove();
+  }
+
+  spine.querySelector(".spine-author")!.textContent = book.author;
   spine.querySelector(".detail-author")!.textContent = book.author;
 
   const statusLabel = book.status === "reading" ? "Reading" : book.status === "finished" ? "Read" : "To read";

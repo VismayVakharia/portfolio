@@ -49,14 +49,17 @@ export function initBoardGames(): void {
   if (wishlist.length > 0) groups.appendChild(renderGroup("Wishlist", wishlist.map(createBoardGameCard), GRID));
 }
 
-function createBoardGameCard(game: BoardGame): HTMLDivElement {
+function createBoardGameCard(game: BoardGame, index: number): HTMLDivElement {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = boardGameCardHTML;
   const card = wrapper.firstElementChild as HTMLDivElement;
 
+  // Same muted book-spine palette as the floppies, cycled per card.
+  card.style.setProperty("--card-bg", `var(--color-spine-${(index % 6) + 1})`);
+
   card.querySelector(".title")!.textContent = game.title;
 
-  const cover = card.querySelector("img.cover");
+  const cover = card.querySelector("img.card-cover");
   if (game.imageUrl) {
     cover?.setAttribute("src", game.imageUrl);
     cover?.setAttribute("alt", game.title);

@@ -15,6 +15,22 @@
   --color-platform-playstation: #4f7fd6;
 }
 
+/* Book spine colours — dusty, desaturated book-cloth tones (not the vibrant
+   accent-palette hues) so a shelf of them doesn't shout in the dark theme; same
+   set works for both themes since they're already dark enough for white title
+   text. Declared outside @theme: theme colours only ever referenced via var()
+   (never through a Tailwind utility class name) get tree-shaken out of the
+   compiled CSS by Tailwind v4's unused-theme-key pruning, so a plain :root rule
+   is used instead. */
+:root {
+  --color-spine-1: #3f5a5e;
+  --color-spine-2: #6b4f3a;
+  --color-spine-3: #4d4f78;
+  --color-spine-4: #764552;
+  --color-spine-5: #3f5f4c;
+  --color-spine-6: #5b4a6e;
+}
+
 html.light {
   --color-background: #f0f6f6;
   --color-background-muted: #e4eded;
@@ -99,39 +115,68 @@ body {
   color: var(--color-accent);
 }
 
-/* Books-as-shelf: each item is a vertical spine that lifts on hover/focus and
-   reveals a detail popover. ponytail: the cover art fills the spine as its
-   background (thin crop) so real per-book colour shows; swap .spine-face's img
-   for a solid bg if crops ever read as noise. */
+/* Books lie in a loose stack: each book is a coloured spine-slab with a readable
+   horizontal title (colour hashed from the title, see books.ts). Per-slab width and
+   left offset are set in JS for the organic pile look. The slab is a flat colour, not
+   a cropped cover — the real cover is revealed in the shared hover popover below. */
 .book-spine {
   position: relative;
-  flex: none;
-  width: 2.75rem;
-  height: 12rem;
+  height: 2rem;
   cursor: pointer;
   outline: none;
-  transition: transform 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
 .book-spine:hover,
 .book-spine:focus-visible {
-  transform: translateY(-10px);
-  z-index: 20;
+  transform: translateX(8px);
+}
+
+/* Page block peeking above the spine — a thin sliver of cream page edges, sitting in
+   the gap above the slab so it reads as a real book seen from the side. */
+.book-spine::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 4px;
+  right: 4px;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: repeating-linear-gradient(90deg, #e9e0c9 0 2px, #cabf9f 2px 3.2px);
 }
 
 .spine-face {
   position: absolute;
   inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   overflow: hidden;
-  border-radius: 0.125rem;
-  background: var(--color-background-muted);
-  box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
-  transition: box-shadow 0.25s ease;
+  padding: 0 0.85rem;
+  border-radius: 0.35rem;
+  /* Rounded-spine illusion: dark top/bottom edges + a light band through the middle,
+     layered over the hashed spine colour (--spine, set in books.ts). The two inset
+     side shadows darken the ends so they read as the curved head/tail caps. */
+  background:
+    linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.32) 0%,
+      rgb(255 255 255 / 0.1) 22%,
+      rgb(255 255 255 / 0.16) 50%,
+      rgb(255 255 255 / 0.04) 78%,
+      rgb(0 0 0 / 0.34) 100%
+    ),
+    var(--spine, var(--color-background-muted));
+  box-shadow:
+    0 3px 6px -2px rgb(0 0 0 / 0.5),
+    inset 6px 0 8px -6px rgb(0 0 0 / 0.55),
+    inset -6px 0 8px -6px rgb(0 0 0 / 0.55);
+  transition: box-shadow 0.2s ease;
 }
 
 .book-spine:hover .spine-face,
 .book-spine:focus-visible .spine-face {
-  box-shadow: 0 12px 26px rgb(0 0 0 / 0.5);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
 }
 
 .book-spine:focus-visible .spine-face {
@@ -139,46 +184,50 @@ body {
   outline-offset: 2px;
 }
 
-.spine-face .cover {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.spine-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.85), rgb(0 0 0 / 0.3) 55%, rgb(0 0 0 / 0.15));
-}
-
 .spine-face .title {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 0.55rem 0;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  flex: 1;
+  min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  font-size: 0.7rem;
+  text-overflow: ellipsis;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
   color: #fff;
-  text-shadow: 0 1px 3px rgb(0 0 0 / 0.9);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.55);
 }
 
-.spine-detail {
+.spine-face .spine-author {
+  flex: none;
+  max-width: 40%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.7rem;
+  color: rgb(255 255 255 / 0.6);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+}
+
+/* Shared hover-reveal popover — a quiet slab/tile expands to its cover + full detail
+   on hover or keyboard focus. Used by book slabs, game tiles and board-game tiles, so
+   the whole shelf reads as one interaction instead of three. */
+.has-pop {
+  position: relative;
+}
+
+.has-pop:hover,
+.has-pop:focus-within {
+  z-index: 20;
+}
+
+.shelf-pop {
   position: absolute;
-  bottom: calc(100% + 0.75rem);
+  bottom: calc(100% + 0.5rem);
   left: 50%;
   z-index: 30;
   display: flex;
   gap: 0.6rem;
-  width: 13rem;
+  width: 15rem;
+  max-width: 88vw;
   padding: 0.75rem;
   border: 1px solid var(--color-border);
   border-radius: 0.375rem;
@@ -193,33 +242,35 @@ body {
     transform 0.2s ease;
 }
 
-.book-spine:hover .spine-detail,
-.book-spine:focus-within .spine-detail {
+.has-pop:hover > .shelf-pop,
+.has-pop:focus-within > .shelf-pop {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
 }
 
-.spine-detail .detail-cover {
-  width: 3rem;
-  height: 4.5rem;
+/* contain (not cover) so book portraits, game banners and square box art all fit
+   the same thumbnail box without cropping. */
+.shelf-pop .detail-cover {
   flex: none;
-  object-fit: cover;
+  width: 4.25rem;
+  height: 5.5rem;
+  object-fit: contain;
+  object-position: top;
   border-radius: 0.125rem;
+  background: var(--color-background);
 }
 
-/* "+N more" tile — spine-sized so it sits on the shelf edge like the rest. */
+/* "+N more" — a short dashed slab that sits in the stack like the rest. */
 .more-spine {
-  flex: none;
-  width: 2.75rem;
-  height: 12rem;
+  width: 50%;
+  height: 2rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  gap: 0.4rem;
   border: 1px dashed var(--color-border);
-  border-radius: 0.125rem;
+  border-radius: 0.1875rem;
   background: var(--color-background-muted);
   color: var(--color-foreground-muted);
   font-family: inherit;
@@ -247,15 +298,205 @@ body {
   letter-spacing: 0.1em;
 }
 
+/* ── Video games: floppy disks in a grid ───────────────────────────────────── */
+.floppy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 9rem);
+  justify-content: start;
+  gap: 1.5rem 1.25rem;
+  padding: 0.5rem 0;
+}
+
+.floppy {
+  flex: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 9rem;
+  height: 9.4rem;
+  padding: 0 0.55rem 0.55rem;
+  border-radius: 0.4rem;
+  /* only the top-right corner is chamfered on a real 3.5" disk */
+  clip-path: polygon(0 0, calc(100% - 1.2rem) 0, 100% 1.2rem, 100% 100%, 0 100%);
+  /* diagonal plastic shade over the per-disk body colour */
+  background:
+    linear-gradient(150deg, rgb(255 255 255 / 0.14), rgb(0 0 0 / 0.04) 45%, rgb(0 0 0 / 0.24)),
+    var(--floppy-body, #d8804a);
+  /* clip-path clips box-shadow, so cast the drop shadow with a filter instead */
+  filter: drop-shadow(0 6px 12px rgb(0 0 0 / 0.45));
+  transition: transform 0.2s ease;
+  outline: none;
+}
+.floppy:hover,
+.floppy:focus-visible {
+  transform: translateY(-6px) scale(1.04);
+  z-index: 2;
+}
+
+/* embossed up-arrow, top-left */
+.floppy-arrow {
+  position: absolute;
+  top: 0.55rem;
+  left: 0.5rem;
+  width: 0;
+  height: 0;
+  border-left: 0.26rem solid transparent;
+  border-right: 0.26rem solid transparent;
+  border-bottom: 0.4rem solid rgb(0 0 0 / 0.3);
+}
+
+/* off-center metal shutter with its window (body colour showing through) */
+.floppy-shutter {
+  position: relative;
+  height: 2.5rem;
+  margin: 0 1.5rem 0.5rem 2rem;
+  border-radius: 0.14rem;
+  background: linear-gradient(180deg, #cfd4da, #9096a0 55%, #b0b6bd);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3);
+}
+.floppy-shutter::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: 13%;
+  width: 26%;
+  border-radius: 2px;
+  background: var(--floppy-body, #d8804a);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.3);
+}
+
+/* white label filling the lower half, with the cover print + a dark caption band */
+.floppy-label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  background: #f4f1e8;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12);
+}
+.floppy-cover {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  /* same printed/worn dulling as the board-game covers */
+  filter: saturate(0.65) contrast(0.92) brightness(0.94) sepia(0.12);
+}
+/* dark caption bar stays legible whether or not a cover loaded */
+.floppy-caption {
+  padding: 0.22rem 0.4rem;
+  background: #22242a;
+}
+.floppy-caption .title {
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #f4f1e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.floppy-meta {
+  font-size: 0.52rem;
+  color: #a8adb5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Board games: tabletop cards ────────────────────────────────────────────── */
+.tabletop-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  padding: 0.55rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--color-border);
+  background: var(--card-bg, var(--color-background-muted));
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.03),
+    0 1px 3px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+  outline: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.tabletop-card:hover,
+.tabletop-card:focus-visible {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 10px 22px rgb(0 0 0 / 0.4);
+  z-index: 5;
+}
+.tabletop-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.card-pip {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.5;
+}
+.tabletop-card .title {
+  padding-right: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.15;
+  /* card bg is always a dark spine colour, so title stays light in both themes */
+  color: #f4f1e8;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.card-cover {
+  /* small centred thumbnail (~quarter of the card), never cropped */
+  align-self: center;
+  flex: 1;
+  width: 65%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 0.3rem;
+  background: rgb(0 0 0 / 0);
+  /* knock the gloss off the box art so it reads as printed/worn, not a bright cover */
+  filter: saturate(0.65) contrast(0.92) brightness(0.94) sepia(0.12);
+}
+.card-foot {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.6rem;
+  font-size: 0.7rem;
+  color: rgb(244 241 232 / 0.6);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .book-spine,
   .spine-face,
-  .spine-detail {
+  .shelf-pop,
+  .tabletop-card {
     transition: none;
   }
   .book-spine:hover,
-  .book-spine:focus-visible {
+  .book-spine:focus-visible,
+  .tabletop-card:hover,
+  .tabletop-card:focus-visible {
     transform: none;
+  }
+  .floppy {
+    transition: none;
   }
 }
 
