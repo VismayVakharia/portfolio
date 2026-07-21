@@ -6,11 +6,11 @@
   "description": "Personal Portfolio Website",
   "homepage": "https://vismayvakharia.com",
   "bugs": {
-    "url": "https://github.com/VismayVakharia/portfolio/issues"
+    "url": "https://github.com/vismay-vakharia/portfolio/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VismayVakharia/portfolio.git"
+    "url": "git+https://github.com/vismay-vakharia/portfolio.git"
   },
   "author": "Vismay Vakharia",
   "scripts": {

@@ -15,7 +15,7 @@ A vanilla TypeScript + Vite multi-page app — no JS framework. Styled with Tail
 ## Getting started
 
 ```bash
-git clone https://github.com/VismayVakharia/portfolio.git
+git clone https://github.com/vismay-vakharia/portfolio.git
 cd portfolio
 npm install
 npm run dev   # http://localhost:5173

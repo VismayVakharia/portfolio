@@ -24,7 +24,7 @@ export function initContact(): void {
       </div>
 
       <div class="mt-8 flex space-x-5">
-        <a href="https://github.com/VismayVakharia/" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/vismay-vakharia/" target="_blank" rel="noopener noreferrer"
           class="text-foreground-muted hover:text-foreground transition-colors">
           <i class="fab fa-github text-xl"></i>
         </a>
