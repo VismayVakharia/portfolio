@@ -41,11 +41,19 @@
   },
   {
     "title": "Inside Job",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/Kimz03Spg3dB96_O-xbcPg__itemrep@2x/img/HpFUDTBBK3nqQ2pdmoT8LsU2S94=/fit-in/492x600/filters:strip_icc()/pic7233520.png",
+    "players": "2-5",
+    "genre": "Trick-Taking Card Game",
+    "bggUrl": "https://boardgamegeek.com/boardgame/324914/inside-job"
   },
   {
     "title": "Kokeshi",
-    "status": "online"
+    "status": "online",
+    "imageUrl": "https://cf.geekdo-images.com/f4hc_XiH4hHuAjOBFwV1iw__itemrep@2x/img/sYdctD2INC73tQvU0huAp08FofI=/fit-in/492x600/filters:strip_icc()/pic8977616.png",
+    "players": "1-4",
+    "genre": "Track Building",
+    "bggUrl": "https://boardgamegeek.com/boardgame/415507/kokeshi"
   },
   {
     "title": "Pandemic: On the Brink",
